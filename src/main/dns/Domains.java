@@ -1,4 +1,4 @@
-package src.main.java.dns;
+package dns;
 
 public class Domains {
 

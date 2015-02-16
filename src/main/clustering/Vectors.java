@@ -1,14 +1,14 @@
-package src.main.java.clustering;
+package clustering;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import src.main.java.algorithms.Entropy;
-import src.main.java.dns.Domains;
-import src.main.java.dns.Host;
-import src.main.java.stats.Histogram;
-import src.main.java.stats.Stats;
+import algorithms.Entropy;
+import dns.Domains;
+import dns.Host;
+import stats.Histogram;
+import stats.Stats;
 
 public class Vectors {
 

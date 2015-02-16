@@ -1,9 +1,9 @@
-package src.main.java.clustering;
+package clustering;
 
 import java.util.Arrays;
 import java.util.List;
 
-import src.main.java.dns.Host;
+import dns.Host;
 
 public class Vector {
 
@@ -30,7 +30,7 @@ public class Vector {
 	// --------------------------------------------------------------------------------
 	
 	public double get (int x){
-		if (x > components.length) return 0.0;
+		if (x >= components.length) return 0.0;
 		return components[x];
 	}
 

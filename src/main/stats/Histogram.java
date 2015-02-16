@@ -1,4 +1,4 @@
-package src.main.java.stats;
+package stats;
 
 import java.util.ArrayList;
 import java.util.Collection;

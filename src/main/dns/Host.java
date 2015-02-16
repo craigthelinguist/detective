@@ -1,4 +1,4 @@
-package src.main.java.dns;
+package dns;
 
 import java.util.List;
 
