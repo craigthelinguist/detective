@@ -31,6 +31,8 @@ public class Vectors {
 	
 	public static Vector mean (List<Vector> vectors) {
 		
+		if (vectors.isEmpty()) throw new ArrayIndexOutOfBoundsException("No vectors to take the mean of!");
+		
 		// get highest dimensions
 		int highestDimension = vectors.get(0).dimensions();
 		for (Vector v : vectors) {
@@ -41,8 +43,10 @@ public class Vectors {
 		double[] values = new double[highestDimension];
 		for (int i = 0; i < highestDimension ;i++) {
 			double[] dubs = new double[vectors.size()];
+			int j = 0;
 			for (Vector vector : vectors) {
-				dubs[i] += vector.get(i);
+				double value = vector.get(i);
+				dubs[j++] += value;
 			}
 			values[i] = Stats.mean(dubs);
 		}

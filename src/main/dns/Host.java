@@ -16,4 +16,8 @@ public class Host {
 		this.queries = queries;
 	}
 	
+	public List<String> getQueries() {
+		return this.queries;
+	}
+	
 }

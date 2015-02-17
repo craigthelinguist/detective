@@ -2,6 +2,8 @@ package clustering;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import org.junit.Test;
@@ -53,7 +55,57 @@ public class VectorTests {
 		}
 	}
 
+	@Test
+	public void testMean001 () {
+		Vector[] vectorArray = new Vector[]{
+				new Vector(new double[]{ 1.0, 4.0, 12.0 }),
+				new Vector(new double[]{ 3.0, 7.0, 13.0 }) };
+		List<Vector> vectors = Arrays.asList(vectorArray);
+		Vector mean = Vectors.mean(vectors);
+		assertEquals("Should've been 2.0 but it was " + mean.get(0), mean.get(0), 2.0, DELTA);
+		assertEquals(mean.get(1), 5.5, DELTA);
+		assertEquals(mean.get(2), 12.5, DELTA);
+	}
+	
+	@Test
+	public void testMean002 () {
+		Vector[] vectorArray = new Vector[]{
+			new Vector (new double[]{ 1.0 })
+		};
+		List<Vector> vectors = Arrays.asList(vectorArray);
+		Vector mean = Vectors.mean(vectors);
+		assertEquals(mean.get(0), 1.0, DELTA);
+	}
+	
+	@Test
+	public void testMean003 () {
+		try{
+			Vector[] vectorArray = new Vector[]{};
+			List<Vector> vectors = Arrays.asList(vectorArray);
+			Vector mean = Vectors.mean(vectors);
+			fail("Mean of no vectors is undefined!");
+		}
+		catch (Exception e){}
+	}
+	
+	@Test
+	public void testMean004 () {
+		Vector[] vectorArray = new Vector[]{
+			new Vector (new double[]{ 0.0, 4.0, 6.0, 12.0 }),
+			new Vector (new double[]{ 10.0, 6.0, 3.0, 4.0 }),
+			new Vector (new double[]{ 5.0, 5.0, 7.0, 12.0 })
+		};
+		List<Vector> vectors = Arrays.asList(vectorArray);
+		Vector mean = Vectors.mean(vectors);
+		assertEquals(mean.get(0), 5.0, DELTA);
+		assertEquals(mean.get(1), 5.0, DELTA);
+		assertEquals(mean.get(2), 16.0/3.0, DELTA);
+		assertEquals(mean.get(3), 28.0/3.0, DELTA);
+		assertEquals(mean.get(4), 0.0, DELTA);
+	}
+	
 	private Random rand = new Random();
+	private final double DELTA = 0.0000001;
 	
 	private Vector randomVector (int length) {
 		double[] dubs = new double[length];
