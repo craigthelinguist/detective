@@ -7,13 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
-import org.apache.hadoop.mapred.ClusterStatus;
-
+import clustering.FeatureCluster;
 import clustering.Vector;
 import dns.Host;
 
@@ -76,7 +72,7 @@ public class IO {
 		return hosts;
 	}
 	
-	public static void saveCluster(Collection<List<Vector>> clusters)
+	public static void saveCluster(List<FeatureCluster> clusters)
 	throws FileNotFoundException, IOException{
 		
 		// open file
@@ -86,8 +82,8 @@ public class IO {
 		int i = 0;
 		String fname;
 		
-		for (List<Vector> cluster : clusters){
-
+		for (FeatureCluster cluster : clusters){
+		
 			// open file
 			String num = i < 10 ? "0" + i : ""+i;
 			fname = dir + "cluster" + num + ".txt";
