@@ -37,9 +37,20 @@ public class FeatureCluster implements Iterable<Vector> {
 		return this.vectors;
 	}
 
-	public Vector getCentroid() {
+	public Vector getCentroid () {
 		return this.centroid;
 	}
+	
+	public int numVectors () {
+		return this.vectors.size();
+	}
+	
+	public int numQueries () {
+		int sz = 0;
+		for (Vector vect : vectors) sz += vect.getQueries().size();
+		return sz;
+	}
+	
 	
 	
 	// Iterable stuff.

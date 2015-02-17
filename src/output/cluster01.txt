@@ -1,0 +1,57 @@
+========== META 
+7 vectors in this cluster.
+31 queries in this cluster.
+Centroid: 
+VECTOR: [0.03812720350342873, 0.016521794030078064, 0.04321081894670132, 0.117942480196505, 0.053610218271138634, 0.1286645238507327, 0.0791490649943243, 0.03597684772469286, 0.08634443453926287, 1.0, 0.0, 3.1415302916432934, 1.0, 0.14285714285714285, 1.578873082818596, 1.0, 0.7142857142857143, 1.3036727530458665, 1.0, 0.8571428571428571, 1.1775129231646484, 27.85714285714286, 6.880000000000001, 27.285714285714285, 2.3393132431340566, 4.0, 0.0, 4.0, 0.0, 1.0, 15.857142857142858, 0.0]
+========== META 
+adsifusdiufh.stuff.co.nz.
+aodisfhoisfdhosdihf.stuff.co.nz.
+aoeifwoefo.stuff.co.nz.
+aosdifjoaijo.stuff.co.nz.
+aosidfjaoiwejfo.stuff.co.nz.
+aosidfjaosidjf.stuff.co.nz.
+asdionfaosidnf.stuff.co.nz.
+asdoifasodifjaosdij.stuff.co.nz.
+asdoifhsofhz.stuff.co.nz.
+asdoifjaowiejf.stuff.co.nz.
+asdoifjhdsiofhosiadhf.stuff.co.nz.
+asdoufhasodfhsif.stuff.co.nz.
+asfadsoifj.stuff.co.nz.
+asodfijasofij.stuff.co.nz.
+asodfjaowiejfoiwaejf.stuff.co.nz.
+asodifhaosidfhowahf.stuff.co.nz.
+asodifjaosidjfasd.stuff.co.nz.
+asodifjaowijf.stuff.co.nz.
+asodifjsaoidfj.stuff.co.nz.
+asodifjsoadfj.stuff.co.nz.
+asodifoaiwhepf.stuff.co.nz.
+asoidfaosifosidafo.stuff.co.nz.
+asoidfjasodjfos.stuff.co.nz.
+odirgdohfodgi.stuff.co.nz.
+saodfhofhodsih.stuff.co.nz.
+saodfhoifh.stuff.co.nz.
+sdoufhaiwfhew.stuff.co.nz.
+sduhfaosih.stuff.co.nz.
+sduifahifhodfh.stuff.co.nz.
+sofdijasdoifjasdf.stuff.co.nz.
+stuasdfoasdijfosd.stuff.co.nz.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

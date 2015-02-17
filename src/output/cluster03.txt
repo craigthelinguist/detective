@@ -1,0 +1,44 @@
+========== META 
+4 vectors in this cluster.
+18 queries in this cluster.
+Centroid: 
+VECTOR: [0.053814487881787665, 0.0, 0.09724786997615936, 0.0753749732554593, 0.0, 0.13701150049539382, 0.05618108805607937, 0.0, 0.10198107032474277, 1.0, 0.0, 2.276883671145756, 1.0, 1.0, 1.0302393714347395, 1.0, 1.0, 0.7566535102709131, 1.0, 1.0, 0.5415318747088517, 14.95, 3.986666666666667, 14.75, 1.8548706702686855, 3.1833333333333336, 0.23555555555555555, 3.0, 0.4049339995364549, 1.5, 19.5, 0.0]
+========== META 
+canterbury.ac.nz.
+ecs.vuw.ac.nz.
+google.co.nz.
+greens.org.nz.
+ird.govt.nz.
+john.co.nz.
+labour.org.nz.
+linguist.nz.
+my.greens.org.nz.
+my.vuw.ac.nz.
+national.org.nz.
+news.ycombinator.com
+nzfirstparty.co.nz.
+nzherald.co.nz.
+nzrs.net.nz.
+websites.org.nz.
+wiki.nzrs.net.nz.
+www.oreilly.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

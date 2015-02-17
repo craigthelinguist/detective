@@ -1,2 +1,0 @@
-192.162.1	john.org.nz, hello.world.nz
-195.140.2	asdfsdf.org.nz, johnny.nz

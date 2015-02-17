@@ -14,9 +14,9 @@ public class FeatureClusterer {
 	// Constants and fields.
 	// -------------------------------------------------------------------------
 	
-	private static final int SUBSET_SIZE = 10; // this many queries are aggregated into one feature vector for clustering
-	private static final int NUM_CLUSTERS = 5; // number of clusters to output from k-means
-	private static final int MAX_ITERATIONS = 40; // number of iterations to perform when clustering
+	private static int SUBSET_SIZE = 10; // this many queries are aggregated into one feature vector for clustering
+	private static int NUM_CLUSTERS = 2; // number of clusters to output from k-means
+	private static int MAX_ITERATIONS = 40; // number of iterations to perform when clustering
 	
 	
 	// Constructors.
@@ -28,31 +28,38 @@ public class FeatureClusterer {
 	// Class methods.
 	// -------------------------------------------------------------------------
 	
+	/**
+	 * Perform K-Means clustering on the given list of hosts.
+	 * @param hosts: the hosts that sent queries during a time period.
+	 * @return list of feature clusters.
+	 */
 	public static List<FeatureCluster> cluster (List<Host> hosts) {
 		
 		// for each host partition their queries into subsets and make a feature vector per subset
 		List<Vector> vectors = makeFeatureVectors(hosts);
 		
-		return null;
-	}
-	
-	// Methods related to clustering vectors.
-	// -------------------------------------------------------------------------
-	
-	/**
-	 * Perform KMeans clustering on the given list of vectors.
-	 * @param vectors: the vectors to be clustered
-	 * @return a list of clusters
-	 */
-	private static List<FeatureCluster> KMeans (List<Vector> vectors) {
+		// perform K-Means clustering.
 		int iterations = 0;
 		List<FeatureCluster> clusters = null;
 		do {
 			clusters = assignCentroids(vectors, clusters);
 			for (Vector vector : vectors) assignToBestCluster(vector, clusters);
+			iterations++;
 		} while (iterations < MAX_ITERATIONS);
 		return clusters;
 	}
+	
+
+	// Configuration.
+	// -------------------------------------------------------------------------
+	
+	public static void SET_SUBSET_SIZE (int newSubsetSize) { SUBSET_SIZE = newSubsetSize; }
+	public static void SET_NUM_CLUSTERS (int newNumClusters) { NUM_CLUSTERS = newNumClusters; }
+	public static void SET_MAX_ITERATIONS (int newMaxIterations) { MAX_ITERATIONS = newMaxIterations; }
+	
+	
+	// Helper methods for clustering.
+	// -------------------------------------------------------------------------
 	
 	/**
 	 * Check all the clusters and put vector into the closest one. The distance to each cluster is determined by the
@@ -67,6 +74,7 @@ public class FeatureClusterer {
 			Vector centroid = cluster.getCentroid();
 			if (best == null || Vectors.distance(centroid, vector) < bestDistance) {
 				best = cluster;
+				bestDistance = Vectors.distance(centroid, vector);
 			}
 		}
 		best.add(vector);
@@ -150,6 +158,11 @@ public class FeatureClusterer {
 			subset.add(query);
 			i++;
 		}
+		
+		// left overs
+		if (!subset.isEmpty()) subsets.add(subset);
+		
+		// return
 		return subsets;
 	}
 	

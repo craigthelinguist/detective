@@ -15,53 +15,63 @@ import dns.Host;
 
 public class IO {
 
+	// Fields.
+	// --------------------------------------------------------------------------------
+	
+	private static final String DIR_OUTPUT = "src/output/".replace('/', File.separatorChar);
+	private static final String DIR_RESOURCES = "src/resources/".replace('/', File.separatorChar);
+	
+
+	// Class methods.
+	// --------------------------------------------------------------------------------
+	
+	/**
+	 * Clear all files in the output folder.
+	 */
 	private static void clearOutputFolder(){
-		String dir = "pleiades/src/output/";
-		dir.replace('/', File.separatorChar);
-		File directory = new File(dir);
+		File directory = new File(DIR_OUTPUT);
 		for (File file : directory.listFiles()){
 			file.delete();
 		}
 	}
 	
-	public static List<Host> load(String fname)
+	
+	/**
+	 * Load a list of hosts from file.
+	 * @param fname: name of file containing the hosts.
+	 * @return list of hosts.
+	 * @throws FileNotFoundException: if file could not be found.
+	 * @throws IOException: if error occurred during reading.
+	 */
+	public static List<Host> load (String fname)
 	throws FileNotFoundException, IOException{
 		
-		clearOutputFolder();
-		
 		// open file
-		String dir = "pleiades/src/resources/" + fname;
-		dir.replace('/', File.separatorChar);
-		File file = new File(dir);
+		File file = new File(DIR_RESOURCES + fname);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		
+		// initialise data structures
 		List<Host> hosts = new ArrayList<Host>();
-		List<String> queries;
 		String line = null;
+		
+		// keep track of current thing being read
+		String ip = null;
+		List<String> queries = new ArrayList<>();
+		
 		while ((line = br.readLine()) != null){
 			
-			char[] chararray = line.toCharArray();
+			if (line.trim().length() == 0) continue;
 			
-			StringBuilder sb = new StringBuilder();
-			int i = 0;
-			
-			while (chararray[i] != '\t') sb.append(chararray[i++]);
-			i++;
-			String ip = sb.toString();
-			
-			queries = new ArrayList<String>();
-			StringBuilder query = new StringBuilder();
-			for (; i < chararray.length; i++){
-				if (chararray[i] == ','){
-					i++; // get rid of comma and space
-					queries.add(query.toString().trim());
-					query = new StringBuilder();
-				}
-				query.append(chararray[i]);
+			if (!line.startsWith("\t")){
+				if (ip != null) hosts.add(new Host(ip, queries));
+				ip = line.trim();
+				queries = new ArrayList<>();
 			}
-			
-			hosts.add(new Host(ip, queries));
+			else {
+				String query = line.trim();
+				queries.add(query);
+			}
 
 		}
 		
@@ -72,13 +82,20 @@ public class IO {
 		return hosts;
 	}
 	
-	public static void saveCluster(List<FeatureCluster> clusters)
+	/**
+	 * Save a list of clusters to several files, one per cluster.
+	 * @param clusters: the clusters to save.
+	 * @param bareBones: if false, some meta info about each cluster is saved to the head of the file.
+	 * @throws FileNotFoundException: if directory to save into could not be found.
+	 * @throws IOException: if exception occurred during writing.
+	 */
+	public static void saveCluster (List<FeatureCluster> clusters, boolean metaInfo)
 	throws FileNotFoundException, IOException{
 		
-		// open file
-		String dir = "pleiades/src/output/";
-		dir.replace('/', File.separatorChar);
+		// clear output folder
+		clearOutputFolder();
 		
+		// open file
 		int i = 0;
 		String fname;
 		
@@ -86,9 +103,22 @@ public class IO {
 		
 			// open file
 			String num = i < 10 ? "0" + i : ""+i;
-			fname = dir + "cluster" + num + ".txt";
+			fname = DIR_OUTPUT + "cluster" + num + ".txt";
 			File file = new File(fname);
 			PrintStream ps = new PrintStream(file);
+			
+			// save meta info
+			if (metaInfo) {
+				Vector centroid = cluster.getCentroid();
+				
+				ps.println("========== META ");
+				ps.println(cluster.numVectors() + " vectors in this cluster.");
+				ps.println(cluster.numQueries() + " queries in this cluster.");
+				ps.println("Centroid: ");
+				ps.println(centroid);
+				ps.println("========== META ");
+				
+			}
 			
 			// output each domain name
 			int count = 0;

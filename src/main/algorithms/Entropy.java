@@ -26,6 +26,7 @@ public class Entropy {
 		char[] chars = string.toCharArray();
 		Histogram<Character> hist = new Histogram();
 		for (char c : chars) hist.add(c);
+		hist.normalise();
 		
 		// compute Shannon entropy
 		double entropy = 0.0;

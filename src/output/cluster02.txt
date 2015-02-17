@@ -1,0 +1,56 @@
+========== META 
+6 vectors in this cluster.
+30 queries in this cluster.
+Centroid: 
+VECTOR: [0.04521372975288241, 0.0, 0.09042745950576482, 0.07505430557959408, 0.0, 0.15010861115918817, 0.04521372975288241, 0.0, 0.09042745950576482, 1.0, 0.0, 2.9524824503883305, 1.0, 0.0, 1.8203414476346247, 1.0, 0.16666666666666666, 1.5741311695954918, 1.0, 0.5, 1.43950097311538, 12.0, 0.0, 12.0, 0.0, 3.0, 0.0, 3.0, 0.0, 1.0, 8.833333333333334, 0.0]
+========== META 
+aaaaa.co.nz.
+aaaab.co.nz.
+aaabc.co.nz.
+aaabc.co.nz.
+aaacd.co.nz.
+aacbc.co.nz.
+abcax.co.nz.
+abcbc.co.nz.
+abcxz.co.nz.
+abcxz.co.nz.
+acbcz.co.nz.
+acdss.co.nz.
+acxcv.co.nz.
+acxcv.co.nz.
+acxcx.co.nz.
+acxxc.co.nz.
+acxxc.co.nz.
+adcda.co.nz.
+adcxc.co.nz.
+addcz.co.nz.
+asdcd.co.nz.
+azxcd.co.nz.
+cazxc.co.nz.
+cdsas.co.nz.
+cdsaz.co.nz.
+cdscd.co.nz.
+csscx.co.nz.
+cxsac.co.nz.
+czcax.co.nz.
+zacdc.co.nz.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

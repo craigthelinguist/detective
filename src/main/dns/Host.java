@@ -20,4 +20,13 @@ public class Host {
 		return this.queries;
 	}
 	
+
+	// Overridden methods.
+	// --------------------------------------------------------------------------------
+	
+	@Override
+	public String toString() {
+		return address;
+	}
+	
 }

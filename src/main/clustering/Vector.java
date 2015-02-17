@@ -52,7 +52,7 @@ public class Vector {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("\nVECTOR: [");
+		sb.append("VECTOR: [");
 		for (int i = 0; i < components.length; i++){
 			sb.append(components[i] + ", ");
 		}
