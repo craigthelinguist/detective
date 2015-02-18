@@ -1,11 +1,10 @@
 package detective;
 
-import java.util.Collection;
 import java.util.List;
 
-import clustering.FeatureCluster;
-import clustering.FeatureClusterer;
-import clustering.Vector;
+import clustering.Cluster;
+import clustering.Clusterer;
+import clustering.feature.FeatureClustering;
 import dns.Host;
 import io.IO;
 
@@ -33,17 +32,18 @@ public class Testing {
 	public static void ClusterTestFile ()
 	throws Exception {
 
-		FeatureClusterer.SET_NUM_CLUSTERS(4);
-		FeatureClusterer.SET_SUBSET_SIZE(5);
+		FeatureClustering.setMaxIterations(4);
+		FeatureClustering.setNumClusters(4);
+		FeatureClustering.setSubsetSize(5);
 		
 		System.out.println("Loading hosts...");
 		List<Host> hosts = IO.loadHosts(HOST_FILE);
 		System.out.println("Finished loading hosts.");
 		System.out.println("Clustering...");
-		List<FeatureCluster> clusters = FeatureClusterer.cluster(hosts);
+		List<Cluster> clusters = Clusterer.clusterByFeatures(hosts);
 		System.out.println("Finished clustering.");
 		System.out.println("Saving clusters...");
-		IO.saveCluster(clusters, true);
+		IO.saveCluster(clusters);
 		System.out.println("All done.");
 		
 	}

@@ -1,4 +1,4 @@
-package clustering;
+package vectors;
 
 import java.util.HashSet;
 import java.util.List;

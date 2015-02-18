@@ -8,6 +8,9 @@ import java.util.Random;
 
 import org.junit.Test;
 
+import vectors.Vector;
+import vectors.Vectors;
+
 public class VectorTests {
 
 	@Test

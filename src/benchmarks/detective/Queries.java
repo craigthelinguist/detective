@@ -32,12 +32,14 @@ public class Queries {
 		return groups.get(name);
 	}
 	
-	public String composition (List<String> queries) {
+	public String composition (Iterable<String> iterable) {
 		
 		// count names from each group
+		int sz = 0;
 		Map<String, Integer> counts = new HashMap<>();
 		counts.put("other", 0);
-		aggregation: for (String str : queries) {			
+		aggregation: for (String str : iterable) {	
+			sz++;
 			for (String grpName : groups.keySet()) {				
 				List<String> grp = groups.get(grpName);
 				if (grp.contains(str)) {
@@ -58,10 +60,10 @@ public class Queries {
 		StringBuilder sb = new StringBuilder();
 		for (String gp : groupNames) {
 			if (counts.containsKey(gp)){
-				sb.append(gp + ": " + asPct(counts.get(gp), queries.size()) + "\n");
+				sb.append(gp + ": " + asPct(counts.get(gp), sz) + "\n");
 			}
 		}
-		if (counts.get("other") > 0) sb.append("other :" + asPct(counts.get("other"), queries.size()) + "\n");
+		if (counts.get("other") > 0) sb.append("other :" + asPct(counts.get("other"), sz) + "\n");
 		
 		return sb.toString();
 	}

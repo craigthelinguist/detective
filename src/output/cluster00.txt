@@ -1,29 +1,22 @@
-========== META 
-1 vectors in this cluster.
-5 queries in this cluster.
-Centroid: 
-VECTOR: [0.02683480996075191, 0.0, 0.05366961992150382, 0.07505430557959408, 0.0, 0.15010861115918817, 0.05036758681457001, 0.0, 0.10073517362914002, 1.0, 0.0, 3.48209706929603, 1.0, 0.0, 1.725809162737019, 1.0, 1.0, 1.4299566844499119, 1.0, 1.0, 1.3468309056344427, 28.8, 12.559999999999999, 27.0, 3.54400902933387, 4.0, 0.0, 4.0, 0.0, 1.0, 16.0, 0.0]
-========== META 
-asdoifhsofhz.stuff.co.nz.
+stuasdfoasdijfosd.stuff.co.nz.
+uvcaylkgdpg.biz
+vxmscyhd.org
+www.ycombinator.com.
+adcda.co.nz.
+aodisfhoisfdhosdihf.stuff.co.nz.
+aoeifwoefo.stuff.co.nz.
 asdoifjaowiejf.stuff.co.nz.
-asdoifjhdsiofhosiadhf.stuff.co.nz.
-asodifhaosidfhowahf.stuff.co.nz.
-asodifjsoadfj.stuff.co.nz.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+asodifjaowijf.stuff.co.nz.
+aosidfjaoiwejfo.stuff.co.nz.
+asdcd.co.nz.
+asdionfaosidnf.stuff.co.nz.
+asodfjaowiejfoiwaejf.stuff.co.nz.
+asodifoaiwhepf.stuff.co.nz.
+cdsas.co.nz.
+ftp.gg.net.nz.
+hunqbpya.net
+odirgdohfodgi.stuff.co.nz.
+saodfhofhodsih.stuff.co.nz.
 
 
 

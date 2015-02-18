@@ -9,8 +9,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import clustering.FeatureCluster;
-import clustering.Vector;
+import vectors.Vector;
+import clustering.Cluster;
 import dns.Host;
 
 public class IO {
@@ -146,7 +146,7 @@ public class IO {
 	 * @throws FileNotFoundException: if directory to save into could not be found.
 	 * @throws IOException: if exception occurred during writing.
 	 */
-	public static void saveCluster (List<FeatureCluster> clusters, boolean metaInfo)
+	public static void saveCluster (List<Cluster> clusters)
 	throws FileNotFoundException, IOException{
 		
 		// clear output folder
@@ -156,7 +156,7 @@ public class IO {
 		int i = 0;
 		String fname;
 		
-		for (FeatureCluster cluster : clusters){
+		for (Cluster cluster : clusters){
 		
 			// open file
 			String num = i < 10 ? "0" + i : ""+i;
@@ -164,33 +164,10 @@ public class IO {
 			File file = new File(fname);
 			PrintStream ps = new PrintStream(file);
 			
-			// save meta info
-			if (metaInfo) {
-				Vector centroid = cluster.getCentroid();
-				
-				ps.println("========== META ");
-				ps.println(cluster.numVectors() + " vectors in this cluster.");
-				ps.println(cluster.numQueries() + " queries in this cluster.");
-				ps.println("Centroid: ");
-				ps.println(centroid);
-				ps.println("========== META ");
-				
-			}
-			
 			// output each domain name
-			int count = 0;
-			for (Vector vector : cluster){
-				List<String> queries = vector.getQueries();
-				count += queries.size();
-				for (String query : queries){
-					ps.println(query);
-				}
-			}
-			System.out.println("Cluster " + i + " has " + count + " entries.");
-			
-			for (int j = 0; j < 20; j++){
-				ps.println();
-			}
+			for (String query : cluster.getDomains()) ps.println(query);
+			System.out.println("Cluster " + i + " has " + cluster.size() + " entries.");
+			for (int j = 0; j < 5; j++) ps.println();
 			
 			i++;
 			ps.close();

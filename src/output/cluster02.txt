@@ -1,55 +1,48 @@
-========== META 
-7 vectors in this cluster.
-31 queries in this cluster.
-Centroid: 
-VECTOR: [0.055009266899547514, 0.01723869129329682, 0.09005590992112403, 0.07997463346269819, 0.01723869129329682, 0.13911937195914761, 0.06063406010657285, 0.01723869129329682, 0.1013054963351747, 1.0, 0.07142857142857142, 1.886996338706263, 1.0, 1.0, 0.8218818384067842, 1.0, 1.0, 0.5825502892651765, 1.0, 1.0, 0.37517172518283776, 14.25, 9.249642857142858, 14.285714285714286, 2.7647670740296166, 2.707142857142857, 0.4853571428571429, 2.5, 0.6222238953371706, 2.4285714285714284, 22.285714285714285, 0.0]
-========== META 
-labour.org.nz.
-mpbwqncg.net
-mtxyfon.info
-ovdbkbanqw.com
-wiki.nzrs.net.nz.
+abcxz.co.nz.
+adcxc.co.nz.
+cdscd.co.nz.
+dkzjyt.com
+ecs.vuw.ac.nz.
 gkrobqo.com
-john.co.nz.
-lxmpzyiq.com
-mail.kiwicon.nz.
-mail.nzfirstparty.co.nz.
-hunqbpya.net
-linguist.nz.
-plrjgcjzf.net
-tv3.co.nz.
-kiwicon.nz.
-lmhfcocgiz.org
-mmacjd.biz
-my.greens.org.nz.
-my.vuw.ac.nz.
 google.co.nz.
+kiwicon.nz.
+maaup.net
 stuff.co.nz.
-uoa.ac.nz.
-vuw.ac.nz.
-www.oreilly.com
-www.ycombinator.com.
-ylktrupygmp.cc
+xteqxdqchft.cn
+yqdqyntx.com
+zgoilqr.info
+cdsaz.co.nz.
+epzyytco.ws
 kokako.greens.org.nz.
+mail.kiwicon.nz.
+plrjgcjzf.net
 news.ycombinator.com
 pxsxdxq.com
-pzzyxnzhuv.com
+qegiche.ws
+some.website.co.nz.
+websites.org.nz.
+zacdc.co.nz.
+lxmpzyiq.com
+mpbwqncg.net
 vote4maki.alcp.co.nz.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+www.oreilly.com
+ylktrupygmp.cc
+cxsac.co.nz.
+dmgetpyr.cn
+john.co.nz.
+linguist.nz.
+mtxyfon.info
+my.vuw.ac.nz.
+nzherald.co.nz.
+nzrs.net.nz.
+pzzyxnzhuv.com
+tkggvtqvj.org
+wiki.nzrs.net.nz.
+aaabc.co.nz.
+aacbc.co.nz.
+acdss.co.nz.
+acxcv.co.nz.
+addcz.co.nz.
 
 
 

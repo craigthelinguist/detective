@@ -1,73 +1,21 @@
-========== META 
-10 vectors in this cluster.
-49 queries in this cluster.
-Centroid: 
-VECTOR: [0.046012624025264404, 0.0, 0.09013998478118881, 0.06904832114016299, 0.0, 0.13621137901098596, 0.05334659806207846, 0.0, 0.10480793285481693, 1.0, 0.0, 2.5528533221973557, 1.0, 0.8, 1.1758857381383598, 1.0, 1.0, 0.9732628269613542, 1.0, 1.0, 0.8740911648235509, 18.734999999999996, 48.326750000000004, 16.7, 6.854491968948336, 3.2900000000000005, 0.4590000000000001, 3.4, 0.6597494353108937, 1.8, 19.2, 0.0]
-========== META 
-aosidfjaosidjf.stuff.co.nz.
-asdcd.co.nz.
-asdoifasodifjaosdij.stuff.co.nz.
-csscx.co.nz.
-ecs.vuw.ac.nz.
-acbcz.co.nz.
-acxxc.co.nz.
+abcxz.co.nz.
+acxcx.co.nz.
 ampavhunh.com
-asdoufhasodfhsif.stuff.co.nz.
-asodifjsaoidfj.stuff.co.nz.
-nzfirstparty.co.nz.
-odirgdohfodgi.stuff.co.nz.
-saodfhofhodsih.stuff.co.nz.
-tkggvtqvj.org
-uvcaylkgdpg.biz
-acxxc.co.nz.
-asodifjaowijf.stuff.co.nz.
-czcax.co.nz.
-dkzjyt.com
-dmgetpyr.cn
-acxcv.co.nz.
-adcxc.co.nz.
-aodisfhoisfdhosdihf.stuff.co.nz.
-aoeifwoefo.stuff.co.nz.
-aosidfjaoiwejfo.stuff.co.nz.
-asfadsoifj.stuff.co.nz.
-asodfjaowiejfoiwaejf.stuff.co.nz.
-asodifoaiwhepf.stuff.co.nz.
-cxsac.co.nz.
-greens.org.nz.
-national.org.nz.
-nzherald.co.nz.
-qegiche.ws
-sduifahifhodfh.stuff.co.nz.
-some.website.co.nz.
-aaabc.co.nz.
-aacbc.co.nz.
-aosdifjoaijo.stuff.co.nz.
-asodifjaosidjfasd.stuff.co.nz.
-cazxc.co.nz.
-saodfhoifh.stuff.co.nz.
-sdoufhaiwfhew.stuff.co.nz.
-sduhfaosih.stuff.co.nz.
-wojpnhwk.cc
-asodfijasofij.stuff.co.nz.
+asdoifjhdsiofhosiadhf.stuff.co.nz.
+ird.govt.nz.
+aaaaa.co.nz.
+aaaab.co.nz.
+asdoifasodifjaosdij.stuff.co.nz.
+asodifhaosidfhowahf.stuff.co.nz.
 canterbury.ac.nz.
-cdsas.co.nz.
-cdscd.co.nz.
-epzyytco.ws
-
-
-
-
-
-w
-
-
-
-
-
-
-
-
-
+asodifjaosidjfasd.stuff.co.nz.
+asoidfaosifosidafo.stuff.co.nz.
+cazxc.co.nz.
+csscx.co.nz.
+lmhfcocgiz.org
+sofdijasdoifjasdf.stuff.co.nz.
+uoa.ac.nz.
+vuw.ac.nz.
 
 
 

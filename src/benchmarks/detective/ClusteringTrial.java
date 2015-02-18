@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import clustering.FeatureCluster;
-import clustering.FeatureClusterer;
+import clustering.Cluster;
+import clustering.Clusterer;
+import clustering.feature.FeatureClustering;
 import dns.Host;
 
 public class ClusteringTrial {
@@ -33,20 +34,20 @@ public class ClusteringTrial {
 		System.out.println(sz + " queries to be clustered.");
 		
 		// configure clustering
-		FeatureClusterer.SET_NUM_CLUSTERS(4);
-		FeatureClusterer.SET_SUBSET_SIZE(5);
+		FeatureClustering.setNumClusters(4);
+		FeatureClustering.setSubsetSize(5);
 		
 		// cluster
 		System.out.println("Finished loading hosts. Clustering...");
-		List<FeatureCluster> clusters = FeatureClusterer.cluster(hosts);
+		List<Cluster> clusters = Clusterer.clusterByFeatures(hosts);
 		sz = 0;
-		for (FeatureCluster cl : clusters) sz += cl.getQueries().size();
+		for (Cluster cl : clusters) sz += cl.size();
 		System.out.println(sz + " queries in " + clusters.size() + " clusters.");
 		
 		// display composition of each cluster
 		System.out.println("\n----------RESULTS----------\n\n");
-		for (FeatureCluster cl : clusters) {
-			String composition = queries.composition(cl.getQueries());
+		for (Cluster cl : clusters) {
+			String composition = queries.composition(cl.getDomains());
 			System.out.println(composition);
 		}
 		
