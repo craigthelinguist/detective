@@ -1,39 +1,40 @@
 ========== META 
-6 vectors in this cluster.
-30 queries in this cluster.
+7 vectors in this cluster.
+31 queries in this cluster.
 Centroid: 
-VECTOR: [0.04521372975288241, 0.0, 0.09042745950576482, 0.07505430557959408, 0.0, 0.15010861115918817, 0.04521372975288241, 0.0, 0.09042745950576482, 1.0, 0.0, 2.9524824503883305, 1.0, 0.0, 1.8203414476346247, 1.0, 0.16666666666666666, 1.5741311695954918, 1.0, 0.5, 1.43950097311538, 12.0, 0.0, 12.0, 0.0, 3.0, 0.0, 3.0, 0.0, 1.0, 8.833333333333334, 0.0]
+VECTOR: [0.055009266899547514, 0.01723869129329682, 0.09005590992112403, 0.07997463346269819, 0.01723869129329682, 0.13911937195914761, 0.06063406010657285, 0.01723869129329682, 0.1013054963351747, 1.0, 0.07142857142857142, 1.886996338706263, 1.0, 1.0, 0.8218818384067842, 1.0, 1.0, 0.5825502892651765, 1.0, 1.0, 0.37517172518283776, 14.25, 9.249642857142858, 14.285714285714286, 2.7647670740296166, 2.707142857142857, 0.4853571428571429, 2.5, 0.6222238953371706, 2.4285714285714284, 22.285714285714285, 0.0]
 ========== META 
-aaaaa.co.nz.
-aaaab.co.nz.
-aaabc.co.nz.
-aaabc.co.nz.
-aaacd.co.nz.
-aacbc.co.nz.
-abcax.co.nz.
-abcbc.co.nz.
-abcxz.co.nz.
-abcxz.co.nz.
-acbcz.co.nz.
-acdss.co.nz.
-acxcv.co.nz.
-acxcv.co.nz.
-acxcx.co.nz.
-acxxc.co.nz.
-acxxc.co.nz.
-adcda.co.nz.
-adcxc.co.nz.
-addcz.co.nz.
-asdcd.co.nz.
-azxcd.co.nz.
-cazxc.co.nz.
-cdsas.co.nz.
-cdsaz.co.nz.
-cdscd.co.nz.
-csscx.co.nz.
-cxsac.co.nz.
-czcax.co.nz.
-zacdc.co.nz.
+labour.org.nz.
+mpbwqncg.net
+mtxyfon.info
+ovdbkbanqw.com
+wiki.nzrs.net.nz.
+gkrobqo.com
+john.co.nz.
+lxmpzyiq.com
+mail.kiwicon.nz.
+mail.nzfirstparty.co.nz.
+hunqbpya.net
+linguist.nz.
+plrjgcjzf.net
+tv3.co.nz.
+kiwicon.nz.
+lmhfcocgiz.org
+mmacjd.biz
+my.greens.org.nz.
+my.vuw.ac.nz.
+google.co.nz.
+stuff.co.nz.
+uoa.ac.nz.
+vuw.ac.nz.
+www.oreilly.com
+www.ycombinator.com.
+ylktrupygmp.cc
+kokako.greens.org.nz.
+news.ycombinator.com
+pxsxdxq.com
+pzzyxnzhuv.com
+vote4maki.alcp.co.nz.
 
 
 

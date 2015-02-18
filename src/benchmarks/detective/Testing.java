@@ -11,10 +11,12 @@ import io.IO;
 
 public class Testing {
 	
+	private static final String HOST_FILE = "mix-kebab1.txt";
+	
 	public static void TestIO ()
 	throws Exception {
 		System.out.println("Loading hosts...");
-		List<Host> hosts = IO.load("hosts-testing.txt");
+		List<Host> hosts = IO.loadHosts(HOST_FILE);
 		System.out.println("Finished loading hosts.");
 		for (Host host : hosts) {
 			System.out.println("==============");
@@ -35,7 +37,7 @@ public class Testing {
 		FeatureClusterer.SET_SUBSET_SIZE(5);
 		
 		System.out.println("Loading hosts...");
-		List<Host> hosts = IO.load("hosts-testing.txt");
+		List<Host> hosts = IO.loadHosts(HOST_FILE);
 		System.out.println("Finished loading hosts.");
 		System.out.println("Clustering...");
 		List<FeatureCluster> clusters = FeatureClusterer.cluster(hosts);

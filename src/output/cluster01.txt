@@ -1,46 +1,64 @@
 ========== META 
-7 vectors in this cluster.
-31 queries in this cluster.
+10 vectors in this cluster.
+49 queries in this cluster.
 Centroid: 
-VECTOR: [0.03812720350342873, 0.016521794030078064, 0.04321081894670132, 0.117942480196505, 0.053610218271138634, 0.1286645238507327, 0.0791490649943243, 0.03597684772469286, 0.08634443453926287, 1.0, 0.0, 3.1415302916432934, 1.0, 0.14285714285714285, 1.578873082818596, 1.0, 0.7142857142857143, 1.3036727530458665, 1.0, 0.8571428571428571, 1.1775129231646484, 27.85714285714286, 6.880000000000001, 27.285714285714285, 2.3393132431340566, 4.0, 0.0, 4.0, 0.0, 1.0, 15.857142857142858, 0.0]
+VECTOR: [0.046012624025264404, 0.0, 0.09013998478118881, 0.06904832114016299, 0.0, 0.13621137901098596, 0.05334659806207846, 0.0, 0.10480793285481693, 1.0, 0.0, 2.5528533221973557, 1.0, 0.8, 1.1758857381383598, 1.0, 1.0, 0.9732628269613542, 1.0, 1.0, 0.8740911648235509, 18.734999999999996, 48.326750000000004, 16.7, 6.854491968948336, 3.2900000000000005, 0.4590000000000001, 3.4, 0.6597494353108937, 1.8, 19.2, 0.0]
 ========== META 
-adsifusdiufh.stuff.co.nz.
-aodisfhoisfdhosdihf.stuff.co.nz.
-aoeifwoefo.stuff.co.nz.
-aosdifjoaijo.stuff.co.nz.
-aosidfjaoiwejfo.stuff.co.nz.
 aosidfjaosidjf.stuff.co.nz.
-asdionfaosidnf.stuff.co.nz.
+asdcd.co.nz.
 asdoifasodifjaosdij.stuff.co.nz.
-asdoifhsofhz.stuff.co.nz.
-asdoifjaowiejf.stuff.co.nz.
-asdoifjhdsiofhosiadhf.stuff.co.nz.
+csscx.co.nz.
+ecs.vuw.ac.nz.
+acbcz.co.nz.
+acxxc.co.nz.
+ampavhunh.com
 asdoufhasodfhsif.stuff.co.nz.
-asfadsoifj.stuff.co.nz.
-asodfijasofij.stuff.co.nz.
-asodfjaowiejfoiwaejf.stuff.co.nz.
-asodifhaosidfhowahf.stuff.co.nz.
-asodifjaosidjfasd.stuff.co.nz.
-asodifjaowijf.stuff.co.nz.
 asodifjsaoidfj.stuff.co.nz.
-asodifjsoadfj.stuff.co.nz.
-asodifoaiwhepf.stuff.co.nz.
-asoidfaosifosidafo.stuff.co.nz.
-asoidfjasodjfos.stuff.co.nz.
+nzfirstparty.co.nz.
 odirgdohfodgi.stuff.co.nz.
 saodfhofhodsih.stuff.co.nz.
+tkggvtqvj.org
+uvcaylkgdpg.biz
+acxxc.co.nz.
+asodifjaowijf.stuff.co.nz.
+czcax.co.nz.
+dkzjyt.com
+dmgetpyr.cn
+acxcv.co.nz.
+adcxc.co.nz.
+aodisfhoisfdhosdihf.stuff.co.nz.
+aoeifwoefo.stuff.co.nz.
+aosidfjaoiwejfo.stuff.co.nz.
+asfadsoifj.stuff.co.nz.
+asodfjaowiejfoiwaejf.stuff.co.nz.
+asodifoaiwhepf.stuff.co.nz.
+cxsac.co.nz.
+greens.org.nz.
+national.org.nz.
+nzherald.co.nz.
+qegiche.ws
+sduifahifhodfh.stuff.co.nz.
+some.website.co.nz.
+aaabc.co.nz.
+aacbc.co.nz.
+aosdifjoaijo.stuff.co.nz.
+asodifjaosidjfasd.stuff.co.nz.
+cazxc.co.nz.
 saodfhoifh.stuff.co.nz.
 sdoufhaiwfhew.stuff.co.nz.
 sduhfaosih.stuff.co.nz.
-sduifahifhodfh.stuff.co.nz.
-sofdijasdoifjasdf.stuff.co.nz.
-stuasdfoasdijfosd.stuff.co.nz.
+wojpnhwk.cc
+asodfijasofij.stuff.co.nz.
+canterbury.ac.nz.
+cdsas.co.nz.
+cdscd.co.nz.
+epzyytco.ws
 
 
 
 
 
-
+w
 
 
 

@@ -51,6 +51,14 @@ public class FeatureCluster implements Iterable<Vector> {
 		return sz;
 	}
 	
+	public List<String> getQueries () {
+		List<String> list = new ArrayList<>();
+		for (Vector vect : vectors) {
+			list.addAll(vect.getQueries());
+		}
+		return list;
+	}
+	
 	
 	
 	// Iterable stuff.

@@ -37,13 +37,48 @@ public class IO {
 	
 	
 	/**
+	 * Loads a list of strings from a file.
+	 * @param fname: name of file.
+	 * @param maxLines: maximum number of strings to read.
+	 * @return list of strings.
+	 * @throws FileNotFoundException: if file could not be found.
+	 * @throws IOException: if there was an error while reading the file.
+	 **/
+	public static List<String> load (String fname, int maxLines)
+	throws FileNotFoundException, IOException {
+		
+		// open file
+		File file = new File(DIR_RESOURCES + fname);
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		
+		// init stuff
+		List<String> strings = new ArrayList<>();
+		String line = null;
+		
+		// read file
+		while ((line = br.readLine()) != null && strings.size() < maxLines) {
+			strings.add(line.trim());
+		}
+		
+		// return
+		return strings;
+		
+	}
+	
+	public static List<String> load (String fname)
+	throws FileNotFoundException, IOException {
+		return load(fname, Integer.MAX_VALUE);
+	}
+	
+	/**
 	 * Load a list of hosts from file.
 	 * @param fname: name of file containing the hosts.
 	 * @return list of hosts.
 	 * @throws FileNotFoundException: if file could not be found.
 	 * @throws IOException: if error occurred during reading.
 	 */
-	public static List<Host> load (String fname)
+	public static List<Host> loadHosts (String fname)
 	throws FileNotFoundException, IOException{
 		
 		// open file
@@ -59,7 +94,7 @@ public class IO {
 		String ip = null;
 		List<String> queries = new ArrayList<>();
 		
-		while ((line = br.readLine()) != null){
+		while ((line = br.readLine()) != null) {
 			
 			if (line.trim().length() == 0) continue;
 			
@@ -80,6 +115,28 @@ public class IO {
 		
 		// done
 		return hosts;
+	}
+	
+	public static void saveHosts (List<Host> hosts, String fname)
+	throws FileNotFoundException, IOException {
+		
+		// open file
+		String fpath = DIR_RESOURCES + fname;
+		File file = new File(fpath);
+		PrintStream ps = new PrintStream(file);
+		
+		// save hosts to file
+		for (Host host : hosts) {
+			ps.println(host);
+			for (String query : host.getQueries()){
+				ps.println("\t"+query);
+			}
+			ps.println();
+		}
+		
+		// clena up
+		ps.close();
+		
 	}
 	
 	/**
