@@ -1,5 +1,6 @@
 package clustering;
 
+import java.util.Collection;
 import java.util.List;
 
 public class Cluster {
@@ -22,7 +23,7 @@ public class Cluster {
 	 * Return an iterable view of the domains in this cluster.
 	 * @return Iterable
 	 */
-	public Iterable<String> getDomains () {
+	public Collection<String> getDomains () {
 		return domains;
 	}
 	

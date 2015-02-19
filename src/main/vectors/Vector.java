@@ -83,4 +83,15 @@ public class Vector {
 		return true;
 	}
 	
+	@Override
+	public Vector clone () {
+		
+		double[] comps = new double[components.length];
+		for (int i = 0; i < components.length; i++) {
+			comps[i] = components[i];
+		}
+		return new Vector(comps);
+		
+	}
+	
 }

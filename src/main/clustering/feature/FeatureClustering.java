@@ -46,6 +46,37 @@ public class FeatureClustering implements ClusterStrategy {
 	// Public methods.
 	// ------------------------------------------------------------
 	
+	/**
+	 * This method allows you to cluster by passing in a list of the starting centroids.
+	 * @param hosts: list of hosts and the queries they sent.
+	 * @param centroids: list of ideal cluster centroids.
+	 * @return a list of clusters
+	 */
+	public List<FeatureCluster> cluster(List<Host> hosts, List<Vector> centroids) {
+
+		// aggregate queries
+		List<Vector> vectors = agg.aggregate(hosts, SUBSET_SIZE);
+		
+		// init the clusters from given centroids
+		List<FeatureCluster> clusters = new ArrayList<>();
+		for (Vector centroid : centroids) {
+			FeatureCluster fc = new FeatureCluster(centroid);
+			clusters.add(fc);
+		}
+		
+		// perform K-Means clustering
+		int iterations = 0;
+		while (iterations++ < MAX_ITERATIONS) {
+			for (Vector vector : vectors) assignToBestCluster(vector, clusters);
+			if (iterations != MAX_ITERATIONS) {
+				for (FeatureCluster fc : clusters) fc.adjustCentroid();
+			}
+		}
+		
+		return clusters;
+		
+	}
+	
 	@Override
 	public List<Cluster> cluster(List<Host> hosts) {
 		
@@ -134,7 +165,7 @@ public class FeatureClustering implements ClusterStrategy {
 	 * An intermediary representation of the final clusters. Stores FeatureVectors.
 	 * @author aaroncraig
 	 */
-	private class FeatureCluster {
+	public class FeatureCluster {
 		
 		private Vector centroid;
 		private List<Vector> vectors;

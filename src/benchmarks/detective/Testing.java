@@ -5,7 +5,7 @@ import java.util.List;
 import clustering.Cluster;
 import clustering.Clusterer;
 import clustering.feature.FeatureClustering;
-import clustering.feature.aggregation.AggregateOptions;
+import clustering.feature.aggregation.Options;
 import dns.Host;
 import io.IO;
 
@@ -31,7 +31,7 @@ public class Testing {
 		System.out.println(hosts.size() + " loaded.");
 	}
 	
-	public static void ClusterTestFile (AggregateOptions aggType)
+	public static void ClusterTestFile (Options aggType)
 	throws Exception {
 		
 		FeatureClustering.setMaxIterations(4);
@@ -54,7 +54,7 @@ public class Testing {
 	
 	public static void main (String[] args)
 	throws Exception {
-		ClusterTestFile(AggregateOptions.VECTOR_AGGREGATE);
+		ClusterTestFile(Options.VECTOR_AGGREGATE);
 	}
 
 	
