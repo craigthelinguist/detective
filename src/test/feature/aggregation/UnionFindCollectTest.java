@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import clustering.feature.aggregation.EntropyAggregate;
-import clustering.feature.aggregation.EntropyAggregate.UnionFindCollect;
+import clustering.feature.aggregation.VectorAggregate;
+import clustering.feature.aggregation.VectorAggregate.UnionFindCollect;
 
 public class UnionFindCollectTest {
 
-	private static final EntropyAggregate agg = new EntropyAggregate();
+	private static final VectorAggregate agg = new VectorAggregate();
 	
 	@Test
 	public void testFind001() {
