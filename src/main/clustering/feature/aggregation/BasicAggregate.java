@@ -12,13 +12,19 @@ import dns.Host;
  * BasicAggregate will sort the domains queried alphabetically and then group the first SUBSET_SIZE into one, the next SUBSET_SIZE
  * into two, and so on.
  */
-public class BasicAggregate implements AggregationStrategy {
+public class BasicAggregate implements AggregateStrategy {
+	
+	private final int SUBSET_SIZE;
+	
+	public BasicAggregate (final int SUBSET_SIZE) {
+		this.SUBSET_SIZE = SUBSET_SIZE;
+	}
 	
 	@Override
-	public List<Vector> aggregate (List<Host> hosts, final int SUBSET_SIZE) {
+	public List<Vector> aggregate (List<Host> hosts) {
 		List<Vector> vectors = new ArrayList<>();
 		for (Host host : hosts){
-			for (List<String> subset : partitionQueries(host, SUBSET_SIZE)) {
+			for (List<String> subset : partitionQueries(host)) {
 				Vector featureVector = Vectors.featureVector(host, subset);
 				vectors.add(featureVector);
 			}
@@ -31,7 +37,7 @@ public class BasicAggregate implements AggregationStrategy {
 	 * @param host: host that sent some queries we're interested in.
 	 * @return a list of the lists of strings we've grouped together.
 	 */
-	private List<List<String>> partitionQueries (Host host, final int SUBSET_SIZE) {
+	private List<List<String>> partitionQueries (Host host) {
 		// sort queries
 		List<String> queries = host.getQueries();
 		Collections.sort(queries);

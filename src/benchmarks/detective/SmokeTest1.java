@@ -9,15 +9,15 @@ import java.util.Set;
 
 import io.IO;
 
-import javax.swing.text.html.Option;
-
 import vectors.Vector;
 import vectors.Vectors;
-
 import clustering.Cluster;
-import clustering.feature.FeatureClustering;
-import clustering.feature.FeatureClustering.FeatureCluster;
-import clustering.feature.aggregation.Options;
+import clustering.feature.FeatureClusterer;
+import clustering.feature.FeatureClusterer.FeatureCluster;
+import clustering.feature.aggregation.AggregateStrategy;
+import clustering.feature.aggregation.VectorAggregate;
+import clustering.feature.assignment.AssignmentStrategy;
+import clustering.feature.assignment.PredefinedAssignment;
 import dns.Host;
 
 /**
@@ -39,11 +39,6 @@ public class SmokeTest1 {
 	public static void main (String[] args)
 	throws IOException {
 		
-		// parameters
-		final Options aggregateOption = Options.VECTOR_AGGREGATE;
-		final int SUBSET_SIZE = 5;
-		FeatureClustering.setSubsetSize(SUBSET_SIZE);
-		
 		// load queries
 		List<String> queriesGood = IO.load("good.txt");
 		List<String> queriesConficker = IO.load("conficker.txt");
@@ -62,6 +57,7 @@ public class SmokeTest1 {
 		queriesConficker = confickerSlice;
 		
 		// make hosts from these domains
+		final int SUBSET_SIZE = 5;
 		List<Host> hosts = new ArrayList<>();
 		hosts.addAll(makeRandomHosts(queriesGood, SUBSET_SIZE));
 		hosts.addAll(makeRandomHosts(queriesConficker, SUBSET_SIZE));
@@ -72,10 +68,14 @@ public class SmokeTest1 {
 		List<Vector> inputCentroids = new ArrayList<>();
 		inputCentroids.add(centroidConficker);
 		inputCentroids.add(centroidGood);
+
+		// clustering modules
+		final AggregateStrategy aggregate = new VectorAggregate(SUBSET_SIZE); 
+		final AssignmentStrategy assign = new PredefinedAssignment(inputCentroids);
 		
 		// do clustering
-		FeatureClustering fClustering = new FeatureClustering(aggregateOption);
-		List<FeatureCluster> fClusters = fClustering.cluster(hosts, inputCentroids);
+		FeatureClusterer fClusterer = new FeatureClusterer(aggregate, assign);
+		List<FeatureCluster> fClusters = fClusterer.cluster(hosts, true);
 		
 		// compare centroid distances
 		List<Vector> outputCentroids = new ArrayList<>();
@@ -118,6 +118,13 @@ public class SmokeTest1 {
 			System.out.println("Cluster " + (count++));
 			printComposition(fc, queriesGood, queriesConficker);
 		}
+		
+		// turn into actual clusters
+		List<Cluster> finalClusters = new ArrayList<>();
+		for (FeatureCluster fc : fClusters) {
+			finalClusters.add(fc.unpack());
+		}
+		IO.saveCluster(finalClusters);
 		
 	}
 

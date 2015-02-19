@@ -11,7 +11,7 @@ import clustering.feature.aggregation.VectorAggregate.UnionFindCollect;
 
 public class UnionFindCollectTest {
 
-	private static final VectorAggregate agg = new VectorAggregate();
+	private static final VectorAggregate agg = new VectorAggregate(5);
 	
 	@Test
 	public void testFind001() {

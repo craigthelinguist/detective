@@ -10,13 +10,19 @@ import vectors.Vector;
 import vectors.Vectors;
 import dns.Host;
 
-public class VectorAggregate implements AggregationStrategy {
+public class VectorAggregate implements AggregateStrategy {
+
+	final int SUBSET_SIZE;
+	
+	public VectorAggregate(int SUBSET_SIZE) {
+		this.SUBSET_SIZE = SUBSET_SIZE;
+	}
 
 	@Override
-	public List<Vector> aggregate(List<Host> hosts, int SUBSET_SIZE) {
+	public List<Vector> aggregate(List<Host> hosts) {
 		List<Vector> vectors = new ArrayList<>();
 		for (Host host : hosts) {
-			List<List<String>> partition = partition(host, SUBSET_SIZE);
+			List<List<String>> partition = partition(host);
 			for (List<String> block : partition) {
 				Vector vector = Vectors.featureVector(host, block);
 				vectors.add(vector);
@@ -25,7 +31,7 @@ public class VectorAggregate implements AggregationStrategy {
 		return vectors;
 	}
 
-	private List<List<String>> partition (Host host, int SUBSET_SIZE) {
+	private List<List<String>> partition (Host host) {
 		
 		List<String> queries = host.getQueries();
 		

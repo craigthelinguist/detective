@@ -9,9 +9,11 @@ import java.util.Map;
 import java.util.Random;
 
 import clustering.Cluster;
-import clustering.Clusterer;
-import clustering.feature.FeatureClustering;
-import clustering.feature.aggregation.Options;
+import clustering.feature.FeatureClusterer;
+import clustering.feature.aggregation.AggregateStrategy;
+import clustering.feature.aggregation.BasicAggregate;
+import clustering.feature.assignment.AssignmentStrategy;
+import clustering.feature.assignment.RandomAssignment;
 import dns.Host;
 
 public class ClusteringTrial {
@@ -34,13 +36,16 @@ public class ClusteringTrial {
 		for (Host host : hosts) sz += host.getQueries().size();
 		System.out.println(sz + " queries to be clustered.");
 		
-		// configure clustering
-		FeatureClustering.setNumClusters(4);
-		FeatureClustering.setSubsetSize(5);
-		
 		// cluster
 		System.out.println("Finished loading hosts. Clustering...");
-		List<Cluster> clusters = Clusterer.clusterByFeatures(hosts, Options.BASIC_AGGREGATE);
+		
+		// create clusterer
+		AggregateStrategy aggregate = new BasicAggregate(5);
+		AssignmentStrategy assign = new RandomAssignment(4);
+		FeatureClusterer clusterer = new FeatureClusterer(aggregate, assign);
+		
+		// cluster
+		List<Cluster> clusters = clusterer.cluster(hosts);
 		sz = 0;
 		for (Cluster cl : clusters) sz += cl.size();
 		System.out.println(sz + " queries in " + clusters.size() + " clusters.");

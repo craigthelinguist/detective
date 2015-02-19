@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import clustering.feature.aggregation.Aggregator;
+import clustering.feature.aggregation.AggregateStrategy;
+import clustering.feature.aggregation.BasicAggregate;
+import clustering.feature.aggregation.VectorAggregate;
 import vectors.Vector;
 import dns.Host;
 
@@ -95,9 +97,13 @@ public class AggregationBenchmark {
 	throws IOException {
 		AggregationBenchmark benchmark = new AggregationBenchmark();
 		List<Host> hosts = benchmark.load("mix-kebab1.txt");
+		
 		final int SUBSET_SIZE = 5;
-		List<Vector> vectors1 = Aggregator.basicAggregate(hosts, SUBSET_SIZE);
-		List<Vector> vectors2 = Aggregator.entropyAggregate(hosts, SUBSET_SIZE);
+		AggregateStrategy basicAggregate = new BasicAggregate(SUBSET_SIZE);
+		AggregateStrategy vectorAggregate = new VectorAggregate(SUBSET_SIZE);
+		
+		List<Vector> vectors1 = basicAggregate.aggregate(hosts);
+		List<Vector> vectors2 = vectorAggregate.aggregate(hosts);
 		String fnameOut1 = "comparison-basic";
 		String fnameOut2 = "comparison-entropy";
 		benchmark.save(fnameOut1, vectors1);

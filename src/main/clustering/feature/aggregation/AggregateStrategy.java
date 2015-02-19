@@ -11,7 +11,7 @@ import dns.Host;
 /**
  * An AggregationStrategy is a way of grouping domains into partitions of size SUBSET_SIZE.
  */
-public interface AggregationStrategy {
+public interface AggregateStrategy {
 
 	/**
 	 * Take a bunch of hosts and partition their domain queries into blocks of size SUBSET_SIZE.
@@ -20,6 +20,6 @@ public interface AggregationStrategy {
 	 * @param SUBSET_SIZE: size of the blocks to partition into.
 	 * @return List<Vector>
 	 */
-	public List<Vector> aggregate (List<Host> hosts, final int SUBSET_SIZE);
+	public List<Vector> aggregate (List<Host> hosts);
 
 }

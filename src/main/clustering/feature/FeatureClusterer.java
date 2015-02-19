@@ -9,13 +9,13 @@ import vectors.Vector;
 import vectors.Vectors;
 import clustering.Cluster;
 import clustering.ClusterStrategy;
-import clustering.feature.aggregation.AggregationStrategy;
+import clustering.feature.aggregation.AggregateStrategy;
 import clustering.feature.aggregation.BasicAggregate;
-import clustering.feature.aggregation.Options;
 import clustering.feature.aggregation.VectorAggregate;
+import clustering.feature.assignment.AssignmentStrategy;
 import dns.Host;
 
-public class FeatureClustering implements ClusterStrategy {
+public class FeatureClusterer implements ClusterStrategy {
 
 	private static int SUBSET_SIZE = 5;
 	private static int NUM_CLUSTERS = 4;
@@ -27,19 +27,12 @@ public class FeatureClustering implements ClusterStrategy {
 	public static void setSubsetSize (int sz) { SUBSET_SIZE = sz; }
 	public static void setNumClusters (int cl) { NUM_CLUSTERS = cl; }
 	public static void setMaxIterations (int it) { MAX_ITERATIONS = it; }
-	private final AggregationStrategy agg;
+	private final AggregateStrategy aggreg;
+	private final AssignmentStrategy assign;
 	
-	public FeatureClustering (Options option) {
-		switch (option) {
-		case BASIC_AGGREGATE:
-			this.agg = new BasicAggregate();
-			break;
-		case VECTOR_AGGREGATE:
-			this.agg = new VectorAggregate();
-			break;
-		default:
-			throw new NullPointerException("Unknown aggregate option: " + option);
-		}
+	public FeatureClusterer (AggregateStrategy aggreg, AssignmentStrategy assign) {
+		this.aggreg = aggreg;
+		this.assign = assign;
 	}
 	
 
@@ -47,44 +40,24 @@ public class FeatureClustering implements ClusterStrategy {
 	// ------------------------------------------------------------
 	
 	/**
-	 * This method allows you to cluster by passing in a list of the starting centroids.
+	 * Perform clustering.
 	 * @param hosts: list of hosts and the queries they sent.
-	 * @param centroids: list of ideal cluster centroids.
 	 * @return a list of clusters
 	 */
-	public List<FeatureCluster> cluster(List<Host> hosts, List<Vector> centroids) {
-
-		// aggregate queries
-		List<Vector> vectors = agg.aggregate(hosts, SUBSET_SIZE);
-		
-		// init the clusters from given centroids
-		List<FeatureCluster> clusters = new ArrayList<>();
-		for (Vector centroid : centroids) {
-			FeatureCluster fc = new FeatureCluster(centroid);
-			clusters.add(fc);
-		}
-		
-		// perform K-Means clustering
-		int iterations = 0;
-		while (iterations++ < MAX_ITERATIONS) {
-			for (Vector vector : vectors) assignToBestCluster(vector, clusters);
-			if (iterations != MAX_ITERATIONS) {
-				for (FeatureCluster fc : clusters) fc.adjustCentroid();
-			}
-		}
-		
-		return clusters;
-		
-	}
-	
 	@Override
 	public List<Cluster> cluster(List<Host> hosts) {
 		
 		// aggregate queries
-		List<Vector> vectors = agg.aggregate(hosts,  SUBSET_SIZE);
+		List<Vector> vectors = aggreg.aggregate(hosts);
 		
 		// assign random centroids
-		List<FeatureCluster> clusters = assignRandomCentroids(vectors);
+		List<Vector> initialCentroids = assign.assignCentroids(vectors);
+		
+		// create clusters from those centroids
+		List<FeatureCluster> clusters = new ArrayList<>();
+		for (Vector centroid : initialCentroids) {
+			clusters.add(new FeatureCluster(centroid));
+		}
 		
 		// perform K-Means clustering
 		int iterations = 0;
@@ -106,37 +79,38 @@ public class FeatureClustering implements ClusterStrategy {
 		
 	}
 
-	
-	
-	// Helper methods.
-	// ------------------------------------------------------------
-	
-	/**
-	 * Choose some random vectors to use as initial centroids.
-	 * @param vectors: all the vectors that are being clustered.
-	 * @return a list of feature clusters, with centroids, but no vectors in them.
-	 */
-	private List<FeatureCluster> assignRandomCentroids (List<Vector> vectors) {
+	public List<FeatureCluster> cluster(List<Host> hosts, boolean featureCluster) {
 		
-		// sanity check
-		if (NUM_CLUSTERS > vectors.size())
-			throw new UnsupportedOperationException("Clustering with more centroids than vectors.");
+		// aggregate queries
+		List<Vector> vectors = aggreg.aggregate(hosts);
 		
-		// assign centroids
-		Set<Vector> centroids = new HashSet<>();
-		while (centroids.size() < NUM_CLUSTERS) {
-			int rand = (int) (Math.random() * vectors.size());
-			centroids.add(vectors.get(rand));
+		// assign random centroids
+		List<Vector> initialCentroids = assign.assignCentroids(vectors);
+		
+		// create clusters from those centroids
+		List<FeatureCluster> clusters = new ArrayList<>();
+		for (Vector centroid : initialCentroids) {
+			clusters.add(new FeatureCluster(centroid));
 		}
 		
-		// make the clusters, return
-		List<FeatureCluster> clusters = new ArrayList<>();
-		for (Vector centroid : centroids) clusters.add(new FeatureCluster(centroid));
+		// perform K-Means clustering
+		int iterations = 0;
+		while (iterations++ < MAX_ITERATIONS) {
+			for (Vector vector : vectors) assignToBestCluster(vector, clusters);
+			if (iterations != MAX_ITERATIONS){
+				for (FeatureCluster cl : clusters) cl.adjustCentroid();
+			}
+		}
+		
 		return clusters;
 		
 		
 	}
 	
+	
+	// Helper methods.
+	// ------------------------------------------------------------
+
 	/**
 	 * Check all the clusters and put vector into the closest one. The distance to each cluster is determined by the
 	 * distance from its centroid.

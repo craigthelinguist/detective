@@ -3,9 +3,12 @@ package detective;
 import java.util.List;
 
 import clustering.Cluster;
-import clustering.Clusterer;
-import clustering.feature.FeatureClustering;
-import clustering.feature.aggregation.Options;
+import clustering.feature.FeatureClusterer;
+import clustering.feature.aggregation.AggregateStrategy;
+import clustering.feature.aggregation.BasicAggregate;
+import clustering.feature.aggregation.VectorAggregate;
+import clustering.feature.assignment.AssignmentStrategy;
+import clustering.feature.assignment.RandomAssignment;
 import dns.Host;
 import io.IO;
 
@@ -31,12 +34,12 @@ public class Testing {
 		System.out.println(hosts.size() + " loaded.");
 	}
 	
-	public static void ClusterTestFile (Options aggType)
+	public static void ClusterTestFile ()
 	throws Exception {
 		
-		FeatureClustering.setMaxIterations(4);
-		FeatureClustering.setNumClusters(4);
-		FeatureClustering.setSubsetSize(5);
+		FeatureClusterer.setMaxIterations(4);
+		FeatureClusterer.setNumClusters(4);
+		FeatureClusterer.setSubsetSize(5);
 		
 		System.out.println("Loading hosts...");
 		List<Host> hosts = IO.loadHosts(HOST_FILE);
@@ -44,7 +47,11 @@ public class Testing {
 		System.out.println("Clustering...");
 		
 		
-		List<Cluster> clusters = Clusterer.clusterByFeatures(hosts, aggType);
+		final AggregateStrategy aggregate = new VectorAggregate(5);
+		final AssignmentStrategy assign = new RandomAssignment(4);
+		FeatureClusterer fc = new FeatureClusterer(aggregate, assign);
+		List<Cluster> clusters = fc.cluster(hosts);
+		
 		System.out.println("Finished clustering.");
 		System.out.println("Saving clusters...");
 		IO.saveCluster(clusters);
@@ -54,7 +61,7 @@ public class Testing {
 	
 	public static void main (String[] args)
 	throws Exception {
-		ClusterTestFile(Options.VECTOR_AGGREGATE);
+		ClusterTestFile();
 	}
 
 	
