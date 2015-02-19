@@ -1,5 +1,6 @@
 package vectors;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,6 +54,39 @@ public class Vectors {
 		
 		return new Vector(values);
 	}
+	
+	
+	
+	// Entropy Vector stuff.
+	// --------------------------------------------------------------------------------
+	public static Vector EntropyVector (String str) {
+		return new Vector(new double[]{
+			Entropy.entropy(str),
+			Entropy.entropy(Domains.extract2LD(str)),
+			Entropy.entropy(Domains.extract3LD(str))
+		});
+	}
+	
+	public static Vector EntropyVector (Collection<String> strings) {
+		Vector[] vectors = new Vector[strings.size()];
+		int i = 0;
+		for (String str : strings) {
+			vectors[i] = EntropyVector(str);
+		}	
+		
+		double[] supremeArray = new double[3];
+		for (int j = 0; j < 3; j++) {
+			double sum = 0.0;
+			for (Vector v : vectors) {
+				sum += v.get(j);
+			}
+			supremeArray[j] = sum / vectors.length;
+		}
+		
+		return new Vector(supremeArray);
+	}
+	
+
 	
 	
 	// Feature Vector stuff.

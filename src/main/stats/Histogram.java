@@ -169,6 +169,7 @@ public class Histogram <KEY> {
 					newNgrams.add(new StringBuilder(sb.toString() + c));
 				}
 			}
+			ngrams = newNgrams;
 		}
 		
 		// turn into list<String>, return

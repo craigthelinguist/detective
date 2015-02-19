@@ -1,6 +1,8 @@
 package algorithms;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,7 +25,7 @@ public class Strings {
 		return true;
 	}
 
-	public double Bhattacharyya (Collection<String> s1, Collection<String> s2) {
+	public static double Bhattacharyya (Collection<String> s1, Collection<String> s2) {
 		return Bhattacharyya(s1,s2,2);
 	}
 	
@@ -35,10 +37,44 @@ public class Strings {
 	 * @param degree: degree of ngrams to use
 	 * @return Bhattacharyya distance
 	 */
-	public double Bhattacharyya (Collection<String> s1, Collection<String> s2, int degree) {
+	public static double Bhattacharyya (Collection<String> s1, Collection<String> s2, int degree) {
 		
-		// remember a distance of 0 means either they are the same or they have nothing in common
-		throw new UnsupportedOperationException("Not yet implemented.");
+		Histogram<String> hist1 = Histogram.ngrams(s1, degree, true);
+		Histogram<String> hist2 = Histogram.ngrams(s2, degree, true);
+		
+		double dist = 0.0;
+		Set<String> ngramsExamined = new HashSet<>();
+		
+		for (String st : hist1.getKeys()){
+			double p1 = hist1.getProb(st);
+			double p2 = hist2.getProb(st);
+			double result = Math.sqrt(p1*p2);
+			if (result == 0.0) throw new RuntimeException("Laplace smoothing has gone awry!");
+			dist += result;
+			ngramsExamined.add(st);
+		}
+
+		for (String st : hist2.getKeys()){
+			if (ngramsExamined.contains(st)) continue;
+			double p1 = hist1.getProb(st);
+			double p2 = hist2.getProb(st);
+			double result = Math.sqrt(p1*p2);
+			if (result == 0.0) throw new RuntimeException("Laplace smoothing has gone awry!");
+			dist += result;
+			ngramsExamined.add(st);
+		}
+		
+		return -1.0 * Math.log(dist);
+		
+	}
+	
+	public static void main (String[] args) {
+		List<String> s1 = new ArrayList<>();
+		List<String> s2 = new ArrayList<>();
+		s1.add("helloworld");
+		s2.add("johnwayne");
+		double dist = Strings.Bhattacharyya(s1, s2);
+		System.out.println(dist);
 	}
 	
 }
