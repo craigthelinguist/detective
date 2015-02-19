@@ -67,16 +67,9 @@ public class EntropyAggregate implements AggregationStrategy {
 					if (collect1.size() + collect2.size() > SUBSET_SIZE) continue;
 					
 					// turn the set into corresponding entropy vector
-					Vector entropy1, entropy2;
-					entropy1 = entropy2 = null;
-					try{
-					entropy1 = Vectors.EntropyVector(collect1);
-					entropy2 = Vectors.EntropyVector(collect2);
-					}
-					catch (NullPointerException npe) {
-						System.out.println("break");
-						entropy2 = Vectors.EntropyVector(collect2);
-					}
+					Vector entropy1 = Vectors.featureVector(host, collect1);
+					Vector entropy2 = Vectors.featureVector(host, collect2);
+					
 					
 					double dist = Vectors.distance(entropy1, entropy2);
 					if (closestDist == -1 || dist < closestDist) {
@@ -90,8 +83,16 @@ public class EntropyAggregate implements AggregationStrategy {
 			
 			// union the best pair that you found
 			if (bestPair != null) {
+			
 				UnionFindCollect head1 = bestPair[0];
 				UnionFindCollect head2 = bestPair[1];
+
+				/* Debugging
+				List<String> collect1 = head1.collect();
+				List<String> collect2 = head2.collect();
+				System.out.println("Merging: \n" + collect1 + "\n" + collect2);
+				*/
+				
 				head1.union(head2);
 				blocks.remove(head1);
 			}

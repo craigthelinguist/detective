@@ -9,7 +9,11 @@ import vectors.Vector;
 import vectors.Vectors;
 import clustering.Cluster;
 import clustering.ClusterStrategy;
+import clustering.feature.aggregation.AggregateOptions;
+import clustering.feature.aggregation.AggregationStrategy;
 import clustering.feature.aggregation.Aggregator;
+import clustering.feature.aggregation.BasicAggregate;
+import clustering.feature.aggregation.EntropyAggregate;
 import dns.Host;
 
 public class FeatureClustering implements ClusterStrategy {
@@ -24,7 +28,20 @@ public class FeatureClustering implements ClusterStrategy {
 	public static void setSubsetSize (int sz) { SUBSET_SIZE = sz; }
 	public static void setNumClusters (int cl) { NUM_CLUSTERS = cl; }
 	public static void setMaxIterations (int it) { MAX_ITERATIONS = it; }
+	private final AggregationStrategy agg;
 	
+	public FeatureClustering (AggregateOptions option) {
+		switch (option) {
+		case BASIC_AGGREGATE:
+			this.agg = new BasicAggregate();
+			break;
+		case VECTOR_AGGREGATE:
+			this.agg = new EntropyAggregate();
+			break;
+		default:
+			throw new NullPointerException("Unknown aggregate option: " + option);
+		}
+	}
 	
 
 	// Public methods.
@@ -34,8 +51,8 @@ public class FeatureClustering implements ClusterStrategy {
 	public List<Cluster> cluster(List<Host> hosts) {
 		
 		// aggregate queries
-		List<Vector> vectors = Aggregator.basicAggregate(hosts, SUBSET_SIZE);
-	
+		List<Vector> vectors = agg.aggregate(hosts,  SUBSET_SIZE);
+		
 		// assign random centroids
 		List<FeatureCluster> clusters = assignRandomCentroids(vectors);
 		
