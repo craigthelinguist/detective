@@ -1,6 +1,6 @@
 package clustering.feature.aggregation;
 
-public enum AggregateOptions {
+public enum Options {
 
 	BASIC_AGGREGATE,
 	VECTOR_AGGREGATE

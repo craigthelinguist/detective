@@ -22,7 +22,7 @@ public class Aggregator {
 	}
 	
 	public static List<Vector> entropyAggregate (List<Host> hosts, final int SUBSET_SIZE) {
-		AggregationStrategy strategy = new EntropyAggregate();
+		AggregationStrategy strategy = new VectorAggregate();
 		return strategy.aggregate(hosts, SUBSET_SIZE);
 	}
 	

@@ -10,7 +10,7 @@ import vectors.Vector;
 import vectors.Vectors;
 import dns.Host;
 
-public class EntropyAggregate implements AggregationStrategy {
+public class VectorAggregate implements AggregationStrategy {
 
 	@Override
 	public List<Vector> aggregate(List<Host> hosts, int SUBSET_SIZE) {

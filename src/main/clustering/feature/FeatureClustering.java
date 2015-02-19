@@ -9,11 +9,10 @@ import vectors.Vector;
 import vectors.Vectors;
 import clustering.Cluster;
 import clustering.ClusterStrategy;
-import clustering.feature.aggregation.AggregateOptions;
 import clustering.feature.aggregation.AggregationStrategy;
-import clustering.feature.aggregation.Aggregator;
 import clustering.feature.aggregation.BasicAggregate;
-import clustering.feature.aggregation.EntropyAggregate;
+import clustering.feature.aggregation.Options;
+import clustering.feature.aggregation.VectorAggregate;
 import dns.Host;
 
 public class FeatureClustering implements ClusterStrategy {
@@ -30,13 +29,13 @@ public class FeatureClustering implements ClusterStrategy {
 	public static void setMaxIterations (int it) { MAX_ITERATIONS = it; }
 	private final AggregationStrategy agg;
 	
-	public FeatureClustering (AggregateOptions option) {
+	public FeatureClustering (Options option) {
 		switch (option) {
 		case BASIC_AGGREGATE:
 			this.agg = new BasicAggregate();
 			break;
 		case VECTOR_AGGREGATE:
-			this.agg = new EntropyAggregate();
+			this.agg = new VectorAggregate();
 			break;
 		default:
 			throw new NullPointerException("Unknown aggregate option: " + option);
