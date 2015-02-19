@@ -75,12 +75,17 @@ public class EntropyAggregate implements AggregationStrategy {
 						closestDist = dist;
 					}
 					
-					head1.union(head2);
-					blocks.remove(head1);
 					
 				}
 			}
 			
+			// union the best pair that you found
+			if (bestPair != null) {
+				UnionFindCollect head1 = bestPair[0];
+				UnionFindCollect head2 = bestPair[1];
+				head1.union(head2);
+				blocks.remove(head1);
+			}
 			
 		} while (bestPair != null);
 		
@@ -96,7 +101,7 @@ public class EntropyAggregate implements AggregationStrategy {
 		
 	}
 	
-	private class UnionFindCollect {
+	public class UnionFindCollect {
 	
 		private String value;
 		private UnionFindCollect head;
@@ -108,26 +113,32 @@ public class EntropyAggregate implements AggregationStrategy {
 			this.kids = new ArrayList<>();
 		}
 		
-		public void setHead (UnionFindCollect newHead) {
-			this.head = newHead;
-			for (UnionFindCollect child : kids) child.setHead(newHead);
-			this.kids = new ArrayList<>();
-		}
-		
 		public UnionFindCollect find () {
 			if (head == null) return this;
 			else{
 				UnionFindCollect newHead = this.head.find();
-				this.setHead(newHead);
+				this.head.kids.remove(this);
+				this.head = newHead;
+				newHead.kids.add(this);
 				return newHead;
 			}
+		}
+		
+		public List<UnionFindCollect> kids() {
+			return this.kids;
+		}
+		
+		public void addKid (UnionFindCollect newKid) {
+			this.kids.add(newKid);
 		}
 		
 		public boolean union (UnionFindCollect other) {
 			UnionFindCollect head1 = find();
 			UnionFindCollect head2 = other.find();
 			if (head1 == head2) return false;
-			this.setHead(head2);
+			if (head1.head != null) head1.head.kids.remove(this);
+			head1.head = head2;
+			head2.kids.add(head1);
 			return true;
 		}
 		
@@ -144,6 +155,10 @@ public class EntropyAggregate implements AggregationStrategy {
 		@Override
 		public int hashCode() {
 			return value.hashCode();
+		}
+		
+		public String toString() {
+			return value;
 		}
 		
 	}

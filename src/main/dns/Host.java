@@ -28,5 +28,10 @@ public class Host {
 	public String toString() {
 		return address;
 	}
+
+	@Override
+	public int hashCode() {
+		return address.hashCode();
+	}
 	
 }

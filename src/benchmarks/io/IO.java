@@ -18,8 +18,9 @@ public class IO {
 	// Fields.
 	// --------------------------------------------------------------------------------
 	
-	private static final String DIR_OUTPUT = "src/output/".replace('/', File.separatorChar);
-	private static final String DIR_RESOURCES = "src/resources/".replace('/', File.separatorChar);
+	public static final String DIR_OUTPUT_CLUSTERS = "src/output/clusters/".replace('/', File.separatorChar);
+	public static final String DIR_OUTPUT_AGGREGATION = "src/output/aggregation/".replace('/', File.separatorChar);
+	public static final String DIR_RESOURCES = "src/resources/".replace('/', File.separatorChar);
 	
 
 	// Class methods.
@@ -29,7 +30,7 @@ public class IO {
 	 * Clear all files in the output folder.
 	 */
 	private static void clearOutputFolder(){
-		File directory = new File(DIR_OUTPUT);
+		File directory = new File(DIR_OUTPUT_CLUSTERS);
 		for (File file : directory.listFiles()){
 			file.delete();
 		}
@@ -160,7 +161,7 @@ public class IO {
 		
 			// open file
 			String num = i < 10 ? "0" + i : ""+i;
-			fname = DIR_OUTPUT + "cluster" + num + ".txt";
+			fname = DIR_OUTPUT_CLUSTERS + "cluster" + num + ".txt";
 			File file = new File(fname);
 			PrintStream ps = new PrintStream(file);
 			
