@@ -11,7 +11,7 @@ import java.util.Random;
 import clustering.Cluster;
 import clustering.Clusterer;
 import clustering.feature.FeatureClustering;
-import clustering.feature.aggregation.AggregateOptions;
+import clustering.feature.aggregation.Options;
 import dns.Host;
 
 public class ClusteringTrial {
@@ -40,7 +40,7 @@ public class ClusteringTrial {
 		
 		// cluster
 		System.out.println("Finished loading hosts. Clustering...");
-		List<Cluster> clusters = Clusterer.clusterByFeatures(hosts, AggregateOptions.BASIC_AGGREGATE);
+		List<Cluster> clusters = Clusterer.clusterByFeatures(hosts, Options.BASIC_AGGREGATE);
 		sz = 0;
 		for (Cluster cl : clusters) sz += cl.size();
 		System.out.println(sz + " queries in " + clusters.size() + " clusters.");
