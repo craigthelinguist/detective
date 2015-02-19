@@ -78,7 +78,7 @@ public class ClusteringTrial {
 		final String base = "192.168.1.";
 		for (int i = 0; i < NUM_HOSTS; i++){
 			List<String> querylist = hostMap.get(i);
-			String hostName = base + "i";
+			String hostName = base + i;
 			Host host = new Host(hostName, querylist);
 			hosts.add(host);
 		}

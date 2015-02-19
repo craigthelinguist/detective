@@ -1,6 +1,7 @@
 package clustering.feature.aggregation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -66,8 +67,16 @@ public class EntropyAggregate implements AggregationStrategy {
 					if (collect1.size() + collect2.size() > SUBSET_SIZE) continue;
 					
 					// turn the set into corresponding entropy vector
-					Vector entropy1 = Vectors.EntropyVector(collect1);
-					Vector entropy2 = Vectors.EntropyVector(collect2);
+					Vector entropy1, entropy2;
+					entropy1 = entropy2 = null;
+					try{
+					entropy1 = Vectors.EntropyVector(collect1);
+					entropy2 = Vectors.EntropyVector(collect2);
+					}
+					catch (NullPointerException npe) {
+						System.out.println("break");
+						entropy2 = Vectors.EntropyVector(collect2);
+					}
 					
 					double dist = Vectors.distance(entropy1, entropy2);
 					if (closestDist == -1 || dist < closestDist) {
@@ -88,7 +97,7 @@ public class EntropyAggregate implements AggregationStrategy {
 			}
 			
 		} while (bestPair != null);
-		
+
 		// map each node to its corresponding list of domains, return the list of list of domains
 		List<List<String>> partition = new ArrayList<>();
 		for (UnionFindCollect block : blocks) {

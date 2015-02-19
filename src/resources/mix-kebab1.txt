@@ -1,136 +1,136 @@
-192.168.1.i
+192.168.1.0
 	linguist.nz.
-	aaaaa.co.nz.
-	cdsas.co.nz.
-	saodfhofhodsih.stuff.co.nz.
-	sduhfaosih.stuff.co.nz.
-	aosidfjaoiwejfo.stuff.co.nz.
-	asodifjsoadfj.stuff.co.nz.
-	stuasdfoasdijfosd.stuff.co.nz.
-	vzcocljtfi.biz
-	qegiche.ws
-	epzyytco.ws
-	pxsxdxq.com
-
-192.168.1.i
-	vuw.ac.nz.
+	greens.org.nz.
+	google.co.nz.
 	uoa.ac.nz.
-	ecs.vuw.ac.nz.
-	www.oreilly.com
-	ftp.gg.net.nz.
-	vote4maki.alcp.co.nz.
-	aaabc.co.nz.
-	adcda.co.nz.
-	acxcv.co.nz.
-	csscx.co.nz.
-	asdionfaosidnf.stuff.co.nz.
-	aosidfjaosidjf.stuff.co.nz.
-	plrjgcjzf.net
-	xteqxdqchft.cn
-
-192.168.1.i
+	some.website.co.nz.
 	www.ycombinator.com.
 	abcax.co.nz.
-	abcxz.co.nz.
-	odirgdohfodgi.stuff.co.nz.
-	asdoifhsofhz.stuff.co.nz.
-	asodifjaowijf.stuff.co.nz.
-	asdoifasodifjaosdij.stuff.co.nz.
-	tkggvtqvj.org
-	wojpnhwk.cc
-	maaup.net
-	vxmscyhd.org
-	dkzjyt.com
-
-192.168.1.i
-	nzrs.net.nz.
-	national.org.nz.
-	nzherald.co.nz.
-	my.vuw.ac.nz.
-	abcxz.co.nz.
-	acbcz.co.nz.
 	acxcv.co.nz.
-	acdss.co.nz.
-	adcxc.co.nz.
-	cdscd.co.nz.
-	cdsaz.co.nz.
+	sduhfaosih.stuff.co.nz.
+	sdoufhaiwfhew.stuff.co.nz.
 	aodisfhoisfdhosdihf.stuff.co.nz.
-	asodifhaosidfhowahf.stuff.co.nz.
-	ampavhunh.com
-
-192.168.1.i
-	stuff.co.nz.
-	some.website.co.nz.
-	websites.org.nz.
-	aaacd.co.nz.
-	acxcx.co.nz.
-	azxcd.co.nz.
-	asodifjsaoidfj.stuff.co.nz.
-	asodifoaiwhepf.stuff.co.nz.
+	asdoifjhdsiofhosiadhf.stuff.co.nz.
 	aoeifwoefo.stuff.co.nz.
-	asodifjaosidjfasd.stuff.co.nz.
-	uvcaylkgdpg.biz
+	aosidfjaoiwejfo.stuff.co.nz.
+	wojpnhwk.cc
 	ylktrupygmp.cc
-	hunqbpya.net
-	pzzyxnzhuv.com
+	yfhnwct.ws
 
-192.168.1.i
-	canterbury.ac.nz.
-	ird.govt.nz.
-	my.greens.org.nz.
-	nzfirstparty.co.nz.
-	news.ycombinator.com
-	kiwicon.nz.
-	kokako.greens.org.nz.
+192.168.1.1
+	john.co.nz.
 	aaabc.co.nz.
 	acxxc.co.nz.
-	addcz.co.nz.
-	asdcd.co.nz.
 	zacdc.co.nz.
-	sduifahifhodfh.stuff.co.nz.
-	asdoifjaowiejf.stuff.co.nz.
-	asoidfaosifosidafo.stuff.co.nz.
+	cdscd.co.nz.
+	asdionfaosidnf.stuff.co.nz.
+	odirgdohfodgi.stuff.co.nz.
+	saodfhofhodsih.stuff.co.nz.
+	asodifjsoadfj.stuff.co.nz.
 	asodfijasofij.stuff.co.nz.
-	yqdqyntx.com
-	gkrobqo.com
-	mpbwqncg.net
+	lxmpzyiq.com
+	epzyytco.ws
 	zgoilqr.info
 	mmacjd.biz
-	yfhnwct.ws
-	mtxyfon.info
-
-192.168.1.i
-	google.co.nz.
-	labour.org.nz.
-	wiki.nzrs.net.nz.
-	czcax.co.nz.
-	cxsac.co.nz.
-	saodfhoifh.stuff.co.nz.
-	asdoifjhdsiofhosiadhf.stuff.co.nz.
-	aosdifjoaijo.stuff.co.nz.
-	lmhfcocgiz.org
-	frdyiaosiir.ws
-	aoghfp.cc
+	vxmscyhd.org
 	dmgetpyr.cn
 
-192.168.1.i
-	john.co.nz.
-	tv3.co.nz.
-	greens.org.nz.
-	mail.kiwicon.nz.
-	mail.nzfirstparty.co.nz.
-	aaaab.co.nz.
-	aacbc.co.nz.
-	abcbc.co.nz.
-	acxxc.co.nz.
-	cazxc.co.nz.
+192.168.1.2
+	nzfirstparty.co.nz.
+	wiki.nzrs.net.nz.
+	vote4maki.alcp.co.nz.
+	adcda.co.nz.
+	acxcv.co.nz.
+	azxcd.co.nz.
+	csscx.co.nz.
 	asfadsoifj.stuff.co.nz.
-	adsifusdiufh.stuff.co.nz.
-	sdoufhaiwfhew.stuff.co.nz.
 	asdoufhasodfhsif.stuff.co.nz.
+	asodifhaosidfhowahf.stuff.co.nz.
 	sofdijasdoifjasdf.stuff.co.nz.
 	asodfjaowiejfoiwaejf.stuff.co.nz.
+	yqdqyntx.com
+	uvcaylkgdpg.biz
+	vzcocljtfi.biz
+	pzzyxnzhuv.com
+	dkzjyt.com
+
+192.168.1.3
+	stuff.co.nz.
+	websites.org.nz.
+	labour.org.nz.
+	www.oreilly.com
+	kiwicon.nz.
+	aaaab.co.nz.
+	acxcx.co.nz.
+	cdsas.co.nz.
+	asodifjsaoidfj.stuff.co.nz.
+	asoidfaosifosidafo.stuff.co.nz.
+	stuasdfoasdijfosd.stuff.co.nz.
 	ovdbkbanqw.com
-	lxmpzyiq.com
+	hunqbpya.net
+
+192.168.1.4
+	national.org.nz.
+	ecs.vuw.ac.nz.
+	aacbc.co.nz.
+	acbcz.co.nz.
+	acxxc.co.nz.
+	addcz.co.nz.
+	czcax.co.nz.
+	cxsac.co.nz.
+	qegiche.ws
+	ampavhunh.com
+	aoghfp.cc
+	mpbwqncg.net
+	mtxyfon.info
+
+192.168.1.5
+	canterbury.ac.nz.
+	ftp.gg.net.nz.
+	mail.kiwicon.nz.
+	mail.nzfirstparty.co.nz.
+	abcbc.co.nz.
+	abcxz.co.nz.
+	asdcd.co.nz.
+	cdsaz.co.nz.
+	saodfhoifh.stuff.co.nz.
+	sduifahifhodfh.stuff.co.nz.
+	asodifoaiwhepf.stuff.co.nz.
+	asdoifasodifjaosdij.stuff.co.nz.
+	asodifjaosidjfasd.stuff.co.nz.
+	lmhfcocgiz.org
+	maaup.net
+	xteqxdqchft.cn
+
+192.168.1.6
+	nzrs.net.nz.
+	my.greens.org.nz.
+	kokako.greens.org.nz.
+	aaacd.co.nz.
+	aaabc.co.nz.
+	asdoifhsofhz.stuff.co.nz.
+	gkrobqo.com
 	knlln.cn
+	pxsxdxq.com
+
+192.168.1.7
+	tv3.co.nz.
+	nzherald.co.nz.
+	vuw.ac.nz.
+	my.vuw.ac.nz.
+	ird.govt.nz.
+	news.ycombinator.com
+	aaaaa.co.nz.
+	abcxz.co.nz.
+	acdss.co.nz.
+	adcxc.co.nz.
+	cazxc.co.nz.
+	adsifusdiufh.stuff.co.nz.
+	asdoifjaowiejf.stuff.co.nz.
+	aosdifjoaijo.stuff.co.nz.
+	asodifjaowijf.stuff.co.nz.
+	aosidfjaosidjf.stuff.co.nz.
+	tkggvtqvj.org
+	plrjgcjzf.net
+	frdyiaosiir.ws
 

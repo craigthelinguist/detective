@@ -71,7 +71,7 @@ public class Vectors {
 		Vector[] vectors = new Vector[strings.size()];
 		int i = 0;
 		for (String str : strings) {
-			vectors[i] = EntropyVector(str);
+			vectors[i++] = EntropyVector(str);
 		}	
 		
 		double[] supremeArray = new double[3];
