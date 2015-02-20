@@ -58,16 +58,12 @@ public class FunctionFactory {
 			Function func = (Function)obj;
 			return func;
 		} catch (InstantiationException e) {
-			System.out.println("Instantiation Exception");
 			throw new ReflectionException(e.getMessage());
 		} catch (IllegalAccessException e) {
-			System.out.println("Illegal access.");
 			throw new ReflectionException(e.getMessage());
 		} catch (IllegalArgumentException e) {
-			System.out.println("Illegal argument.");
 			throw new ReflectionException(e.getMessage());
 		} catch (InvocationTargetException e) {
-			System.out.println("Inovcation target.");
 			throw (TypeException)e.getTargetException();
 		}
 

@@ -40,10 +40,10 @@ public class TestingREPL {
 			String input = scan.nextLine().trim();	
 			try {
 				Expression expr = new Parser(input).parseExpression();
-				System.out.println("expr");
 				Primitive p = expr.exec();
-				System.out.println("prim");
 				if (p != Kore.kore) System.out.println(p.eval());
+				System.out.println();
+				
 			} catch (Exception e) {
 				error(e.getMessage());
 			}
