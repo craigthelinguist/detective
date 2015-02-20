@@ -6,16 +6,16 @@ import primitives.Kore;
 
 public class Block extends Expression implements Executable {
 
-	List<Expression> exprs;
+	private List<Expression> blockExpressions;
 	
 	public Block (List<Expression> exprs) {
-		this.exprs = exprs;
+		this.blockExpressions = exprs;
 	}
 	
 	@Override
 	public Primitive exec() {
 		Primitive rValue = Kore.kore;
-		for (Expression expr : exprs) {
+		for (Expression expr : blockExpressions) {
 			rValue = expr.exec();
 		}
 		return Kore.kore;

@@ -6,16 +6,16 @@ import rules.Expression;
 
 public abstract class Function extends Expression {
 
-	private final Primitive[] args;
+	private final Primitive[] arguments;
 	
 	public Function (Primitive[] args)
 	throws TypeException {
 		verifyArguments(args);
-		this.args = args;
+		this.arguments = args;
 	}
 	
 	public Function () {
-		this.args = null;
+		this.arguments = null;
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public abstract class Function extends Expression {
 
 	public abstract Class returnType ();
 	
-	public Primitive[] args () { return this.args; }
+	public Primitive[] args () { return this.arguments; }
 	
 	@Override
 	public String eval () {

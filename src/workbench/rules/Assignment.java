@@ -4,23 +4,23 @@ import workbench.TestingREPL;
 
 public class Assignment extends Expression {
 
-	final private String name;
-	final private Expression expr;
+	final private String variableName;
+	final private Expression assignmentExpression;
 	
 	public Assignment (String name, Expression expr) {
-		this.name = name;
-		this.expr = expr;
+		this.variableName = name;
+		this.assignmentExpression = expr;
 	}
 	
 	@Override
 	public Primitive exec () {
-		TestingREPL.assign(name, expr);
-		return expr.exec();
+		TestingREPL.assign(variableName, assignmentExpression);
+		return assignmentExpression.exec();
 	}
 	
 	@Override
 	public String eval () {
-		return expr.exec().toString();
+		return assignmentExpression.exec().toString();
 	}
 
 	

@@ -31,7 +31,7 @@ public class Parser {
 	}
 	
 	private static List<Character> delimiters = Arrays.asList(new Character[]{
-		'(', ')', ';', '\n', ',', '"'
+		'(', ')', ';', '\n', ',', '"', '='
 	});
 	
 	private static List<Character> whitespace = Arrays.asList(new Character[]{
@@ -50,7 +50,7 @@ public class Parser {
 		index += token.length();
 		
 		// is it a variable binding?
-		if (!delimiter(index)) throw new ParsingException("Unknown token while parsing: " + peek());
+		if (!delimiter()) throw new ParsingException("Unknown token while parsing: " + peek());
 		
 		// is it a function call?
 		if (peek("(")) {
@@ -131,13 +131,21 @@ public class Parser {
 		while (whitespace(index) && index < length) index++;
 	}	
 	
-	public boolean num (int i) {
+	public boolean num () {
 		skipWhiteSpace();
+		return delimiters.contains(input.charAt(index));
+	}
+	
+	public boolean num (int i) {
 		return Character.isDigit(input.charAt(i));
 	}		
 	
-	public boolean delimiter (int i) {
+	public boolean delimiter () {
 		skipWhiteSpace();
+		return delimiters.contains(input.charAt(index));
+	}
+	
+	public boolean delimiter (int i) {
 		return delimiters.contains(input.charAt(i));
 	}
 	

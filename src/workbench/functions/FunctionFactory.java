@@ -33,7 +33,8 @@ public class FunctionFactory {
 	}
 	
 	public static Function make (String name, Primitive[] args)
-	throws ParsingException, TypeException, ReflectionException {		
+	throws ParsingException, TypeException, ReflectionException {
+		
 		if (aliases.containsKey(name)) name = aliases.get(name);
 		if (!funcs.containsKey(name)) throw new ParsingException("Unknown function name " + name);
 		Class cl = funcs.get(name);
@@ -48,17 +49,25 @@ public class FunctionFactory {
 				break;
 			}
 		}
+		
+		
+
 		if (constructor == null) throw new ReflectionException("Could not find constructor for function.");
-			
 		try {
-			return (Function)(constructor.newInstance(new Object[]{ args }));
+			Object obj = constructor.newInstance(new Object[]{ args });
+			Function func = (Function)obj;
+			return func;
 		} catch (InstantiationException e) {
+			System.out.println("Instantiation Exception");
 			throw new ReflectionException(e.getMessage());
 		} catch (IllegalAccessException e) {
+			System.out.println("Illegal access.");
 			throw new ReflectionException(e.getMessage());
 		} catch (IllegalArgumentException e) {
+			System.out.println("Illegal argument.");
 			throw new ReflectionException(e.getMessage());
 		} catch (InvocationTargetException e) {
+			System.out.println("Inovcation target.");
 			throw (TypeException)e.getTargetException();
 		}
 
@@ -67,7 +76,16 @@ public class FunctionFactory {
 	public static Function make (String name) {
 		try{
 			Class cl = FunctionFactory.funcs.get(name);
-			Constructor cons = cl.getConstructors()[1];
+			Constructor[] constructors = cl.getConstructors();
+			Constructor cons = null;
+			
+			for (Constructor con : constructors) {
+				if (con.getParameterTypes().length == 0){
+					cons = con;
+					break;
+				}
+			}
+			
 			Function f = (Function)(cons.newInstance());
 			return f;
 		}
