@@ -8,6 +8,7 @@ import java.util.Map;
 import errors.ParsingException;
 import errors.TypeException;
 import primitives.Primitive;
+import primitives.Str;
 
 public class FunctionFactory {
 
@@ -28,4 +29,17 @@ public class FunctionFactory {
 		Constructor constructor = cl.getConstructors()[0];
 		return (Function)(constructor.newInstance(new Object[]{ args }));
 	}
+	
+	public static Function make (String name) {
+		try{
+			Class cl = FunctionFactory.funcs.get(name);
+			Constructor cons = cl.getConstructors()[1];
+			Function f = (Function)(cons.newInstance());
+			return f;
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

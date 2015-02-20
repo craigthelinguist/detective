@@ -29,8 +29,14 @@ public class FuncHelp extends Function {
 
 	@Override
 	public Primitive eval() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String s = "List of commands: \n";
+		
+		for (String str : FunctionFactory.funcs.keySet()) {
+			Function f = FunctionFactory.make(str);
+			s += f.usage() + "\n";
+		}
+		return new Str(s);
 	}
 
 	@Override

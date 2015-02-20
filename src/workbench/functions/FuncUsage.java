@@ -1,7 +1,5 @@
 package functions;
 
-import java.lang.reflect.Constructor;
-
 import primitives.Primitive;
 import primitives.Str;
 import errors.TypeException;
@@ -42,16 +40,8 @@ public class FuncUsage extends Function {
 
 	@Override
 	public Primitive eval() {
-		String funcName = args()[0].toString();
-		try{
-			Class cl = FunctionFactory.funcs.get(funcName);
-			Constructor cons = cl.getConstructors()[1];
-			Function f = (Function)(cons.newInstance());
-			return new Str(f.usage());
-		}
-		catch (Exception e) {
-			return new Str("Error getting usage for the function " + funcName);
-		}
+		Function f = FunctionFactory.make(args()[0].toString());
+		return new Str(f.usage());
 	}
 
 	@Override
