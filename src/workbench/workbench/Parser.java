@@ -2,9 +2,11 @@ package workbench;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import errors.ParsingException;
+import errors.ReflectionException;
 import errors.TypeException;
 import functions.Function;
 import functions.FunctionFactory;
@@ -28,40 +30,34 @@ public class Parser {
 		this.length = input.length();
 	}
 	
-	private static List<Character> delimiters;
-	static {
-		delimiters.add('(');
-		delimiters.add(')');
-		delimiters.add(';');
-		delimiters.add('\n');
-		delimiters.add(',');
-	}
+	private static List<Character> delimiters = Arrays.asList(new Character[]{
+		'(', ')', ';', '\n', ',', '"'
+	});
 	
-	private static List<Character> whitespace;
-	static {
-		whitespace.add(' ');
-	}
+	private static List<Character> whitespace = Arrays.asList(new Character[]{
+		' '	
+	});
 	
 	public Expression parseExpression()
-	throws ParsingException, InstantiationException, IllegalAccessException,
-	IllegalArgumentException, InvocationTargetException, TypeException {
+	throws ParsingException, ReflectionException, TypeException {
 		
 		// parse int literal
-		if (num()) return Parser.parseInt(input);
+		if (num(index)) return Parser.parseInt(input);
 		
 		// parse string literal
 		String token = peek();
-		if (token.startsWith("\"") && token.endsWith("\"")) return Parser.parseInt(input);
+		if (token.startsWith("\"") && token.endsWith("\"")) return parseStr();
+		index += token.length();
 		
 		// is it a variable binding?
-		if (!delimiter()) throw new ParsingException("Unknown token while parsing: " + peek());
+		if (!delimiter(index)) throw new ParsingException("Unknown token while parsing: " + peek());
 		
 		// is it a function call?
 		if (peek("(")) {
-			Expression[] exprs = parseFunctionArgs();
-			Primitive[] prims = new Primitive[exprs.length];
-			for (int i = 0; i < exprs.length; i++) {
-				prims[i] = exprs[i].exec();
+			List<Expression> exprs = parseFunctionArgs();
+			Primitive[] prims = new Primitive[exprs.size()];
+			for (int i = 0; i < exprs.size(); i++) {
+				prims[i] = exprs.get(i).exec();
 			}
 			return FunctionFactory.make(token, prims);
 		}
@@ -80,23 +76,33 @@ public class Parser {
 		
 	}
 	
-	private Expression[] parseFunctionArgs()
-	throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParsingException, TypeException {
+	private Str parseStr () throws ParsingException {
+		if (!gobble("\"")) throw new ParsingException("String literal must start with \"");
+		StringBuilder sb = new StringBuilder();
+		while (input.charAt(index) != '"' ) {
+			sb.append(input.charAt(index++));
+		}
+		index++;
+		if (sb.length() == 0) return Str.EmptyString;
+		else return new Str(sb.toString());
+	}
+	
+	private List<Expression> parseFunctionArgs()
+	throws ReflectionException, TypeException, ParsingException {
 		
 		if (!gobble("(")) throw new ParsingException("No opening bracket for function arguments.");
-		if (gobble(")")) return new Expression[] {}; // no args;
+		if (gobble(")")) return new ArrayList<>(); // no args;
 		
 		List<Expression> exprs = new ArrayList<>();
-		do {
+		while (true) {
 			Expression expr = parseExpression();
-			if (!gobble(",")) throw new ParsingException("No separator while parsing function arguments.");
 			exprs.add(expr);
-		} while (!gobble("("));
-		Expression[] exprArray = new Expression[exprs.size()];
-		for (int i = 0; i < exprs.size(); i++) {
-			exprArray[i] = exprs.get(i);
+			if (gobble(",")) continue;
+			else if (gobble(")")) break;
+			else throw new ParsingException("No separator while parsing function arguments.");
 		}
-		return exprArray;
+		
+		return exprs;
 	}
 
 	public static Int parseInt (String input) throws ParsingException {
@@ -122,23 +128,21 @@ public class Parser {
 	}
 	
 	public void skipWhiteSpace () {
-		while (whitespace() && index < length) index++;
-		while (whitespace() && index < length) index++;
+		while (whitespace(index) && index < length) index++;
 	}	
 	
-	public boolean num () {
+	public boolean num (int i) {
 		skipWhiteSpace();
-		return Character.isDigit(input.charAt(index));
+		return Character.isDigit(input.charAt(i));
 	}		
 	
-	public boolean delimiter () {
+	public boolean delimiter (int i) {
 		skipWhiteSpace();
-		return delimiters.contains(input.charAt(index));
+		return delimiters.contains(input.charAt(i));
 	}
 	
-	public boolean whitespace () {
-		skipWhiteSpace();
-		return whitespace.contains(input.charAt(index));
+	public boolean whitespace (int i) {
+		return whitespace.contains(input.charAt(i));
 	}
 	
 	public boolean peek (String expected) {
@@ -148,9 +152,9 @@ public class Parser {
 	
 	public String peek () {
 		skipWhiteSpace();
-		if (delimiter()) return ""+input.charAt(index);
+		if (delimiter(index)) return ""+input.charAt(index);
 		StringBuilder sb = new StringBuilder();
-		for (int i = index; i < length && !delimiter() && !whitespace(); i++) {
+		for (int i = index; i < length && !delimiter(i) && !whitespace(i); i++) {
 			sb.append(input.charAt(i));
 		}
 		return sb.toString();
@@ -160,7 +164,7 @@ public class Parser {
 		String str = peek();
 		if (str.equals(expected)){
 			index += str.length();
-			return false;
+			return true;
 		}
 		else return false;
 	}

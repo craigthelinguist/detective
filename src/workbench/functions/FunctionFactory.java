@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import errors.ParsingException;
+import errors.ReflectionException;
 import errors.TypeException;
 import functions.inherent.FuncHelp;
 import functions.inherent.FuncLs;
@@ -32,13 +33,35 @@ public class FunctionFactory {
 	}
 	
 	public static Function make (String name, Primitive[] args)
-	throws ParsingException, TypeException, InstantiationException,
-	IllegalAccessException, IllegalArgumentException, InvocationTargetException {		
+	throws ParsingException, TypeException, ReflectionException {		
 		if (aliases.containsKey(name)) name = aliases.get(name);
 		if (!funcs.containsKey(name)) throw new ParsingException("Unknown function name " + name);
 		Class cl = funcs.get(name);
-		Constructor constructor = cl.getConstructors()[0];
-		return (Function)(constructor.newInstance(new Object[]{ args }));
+		
+		
+		Constructor[] constructors = cl.getConstructors();
+		Constructor constructor = null;
+		for (int i = 0; i < constructors.length; i++) {
+			Constructor cons = constructors[i];
+			if (cons.getParameterTypes().length == 1){
+				constructor = cons;
+				break;
+			}
+		}
+		if (constructor == null) throw new ReflectionException("Could not find constructor for function.");
+			
+		try {
+			return (Function)(constructor.newInstance(new Object[]{ args }));
+		} catch (InstantiationException e) {
+			throw new ReflectionException(e.getMessage());
+		} catch (IllegalAccessException e) {
+			throw new ReflectionException(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new ReflectionException(e.getMessage());
+		} catch (InvocationTargetException e) {
+			throw (TypeException)e.getTargetException();
+		}
+
 	}
 	
 	public static Function make (String name) {

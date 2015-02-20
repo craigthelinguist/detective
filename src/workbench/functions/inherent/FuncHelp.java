@@ -19,7 +19,6 @@ public class FuncHelp extends Function {
 	@Override
 	public void verifyArguments(Primitive[] args) throws TypeException {
 		if (args.length != 0){
-			System.out.println(args.length);
 			throw new TypeException("help() takes no arguments.");
 		}
 	}

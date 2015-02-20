@@ -4,6 +4,7 @@ import rules.Primitive;
 
 public class Str extends Primitive {
 
+	public final static Str EmptyString = new Str("");
 	private final String str;
 	
 	public Str (String str) {
