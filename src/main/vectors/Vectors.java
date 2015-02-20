@@ -192,10 +192,10 @@ public class Vectors {
 		
 		// return features
 		return new double[] {
-			Stats.mean(lengths),
-			Stats.variance(lengths),
-			Stats.median(lengths),
-			Stats.stdev(lengths),
+			//Stats.mean(lengths),
+			//Stats.variance(lengths),
+			//Stats.median(lengths),
+			//Stats.stdev(lengths),
 			Stats.mean(domainLevels),
 			Stats.variance(domainLevels),
 			Stats.median(domainLevels),

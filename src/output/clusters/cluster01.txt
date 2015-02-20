@@ -1,22 +1,37 @@
+linguist.nz.
+nzrs.net.nz.
+john.co.nz.
+stuff.co.nz.
+tv3.co.nz.
+google.co.nz.
+greens.org.nz.
+vuw.ac.nz.
+national.org.nz.
+nzherald.co.nz.
+ird.govt.nz.
+canterbury.ac.nz.
+my.vuw.ac.nz.
+ecs.vuw.ac.nz.
+uoa.ac.nz.
 websites.org.nz.
-my.greens.org.nz.
 nzfirstparty.co.nz.
-some.website.co.nz.
 labour.org.nz.
+my.greens.org.nz.
+some.website.co.nz.
 kiwicon.nz.
+ftp.gg.net.nz.
 news.ycombinator.com
 wiki.nzrs.net.nz.
-ftp.gg.net.nz.
 www.oreilly.com
 vote4maki.alcp.co.nz.
-www.ycombinator.com.
-kokako.greens.org.nz.
 mail.nzfirstparty.co.nz.
 mail.kiwicon.nz.
+www.ycombinator.com.
+kokako.greens.org.nz.
 list.national.org.nz.
-mail.national.org.nz.
-www.national.org.nz.
 www.tv3.co.nz.
+www.national.org.nz.
+mail.national.org.nz.
 
 
 
