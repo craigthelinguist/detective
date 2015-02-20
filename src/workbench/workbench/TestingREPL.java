@@ -24,7 +24,7 @@ public class TestingREPL {
 		else return null;
 	}
 	
-	private static void shutdown () {
+	public static void shutdown () {
 		scan.close();
 		System.exit(0);
 	}

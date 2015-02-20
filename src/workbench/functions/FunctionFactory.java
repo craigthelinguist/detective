@@ -10,8 +10,11 @@ import java.util.Set;
 import errors.ParsingException;
 import errors.ReflectionException;
 import errors.TypeException;
+import functions.inherent.FuncAlias;
+import functions.inherent.FuncAliases;
 import functions.inherent.FuncHelp;
 import functions.inherent.FuncLs;
+import functions.inherent.FuncQuit;
 import functions.inherent.FuncUsage;
 import primitives.Str;
 import rules.Primitive;
@@ -25,11 +28,22 @@ public class FunctionFactory {
 		funcs.put("ls", FuncLs.class);
 		funcs.put("usage", FuncUsage.class);
 		funcs.put("help", FuncHelp.class);
+		funcs.put("aliases", FuncAliases.class);
+		funcs.put("alias", FuncAlias.class);
+		funcs.put("quit", FuncQuit.class);
 	}
 	
 	public static final Map<String, String> aliases = new HashMap<>();
 	static {
 		aliases.put("list", "ls");
+	}
+	
+	public static void addAlias (String a1, String a2) {
+		aliases.put(a1, a2);
+	}
+	
+	public static String getAlias (String s1) {
+		return aliases.get(s1);
 	}
 	
 	public static Function make (String name, Primitive[] args)
