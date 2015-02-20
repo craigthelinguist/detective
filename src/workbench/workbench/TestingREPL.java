@@ -21,7 +21,7 @@ public class TestingREPL {
 	
 	public static Expression getBinding(String name) {
 		if (bindings.containsKey(name)) return bindings.get(name);
-		else return Kore.kore;
+		else return null;
 	}
 	
 	private static void shutdown () {
@@ -41,9 +41,7 @@ public class TestingREPL {
 			try {
 				Expression expr = new Parser(input).parseExpression();
 				Primitive p = expr.exec();
-				if (p != Kore.kore) System.out.println(p.eval());
-				System.out.println();
-				
+				if (p != Kore.kore) System.out.println(p.eval()+"\n");
 			} catch (Exception e) {
 				error(e.getMessage());
 			}

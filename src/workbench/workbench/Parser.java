@@ -1,6 +1,5 @@
 package workbench;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,15 +7,12 @@ import java.util.List;
 import errors.ParsingException;
 import errors.ReflectionException;
 import errors.TypeException;
-import functions.Function;
 import functions.FunctionFactory;
 import primitives.Int;
 import primitives.Str;
 import rules.Assignment;
-import rules.Block;
 import rules.Expression;
 import rules.Primitive;
-import rules.Variable;
 
 public class Parser {
 
@@ -31,7 +27,7 @@ public class Parser {
 	}
 	
 	private static List<Character> delimiters = Arrays.asList(new Character[]{
-		'(', ')', ';', '\n', ',', '"', '='
+		'(', ')', ';', '\n', ',', '=', ';'
 	});
 	
 	private static List<Character> whitespace = Arrays.asList(new Character[]{
@@ -42,15 +38,21 @@ public class Parser {
 	throws ParsingException, ReflectionException, TypeException {
 		
 		// parse int literal
-		if (num(index)) return Parser.parseInt(input);
+		if (num()) return parseInt(input);
 		
-		// parse string literal
 		String token = peek();
-		if (token.startsWith("\"") && token.endsWith("\"")) return parseStr();
 		index += token.length();
+
+		// parse string literal
+		if (token.startsWith("\"") && token.endsWith("\"")) return new Parser(token).parseStr();
 		
-		// is it a variable binding?
-		if (!delimiter()) throw new ParsingException("Unknown token while parsing: " + peek());
+		// parse variable
+		if (TestingREPL.getBinding(token) != null) {
+			return TestingREPL.getBinding(token);
+		}
+		
+		// need delimiter
+		if (!delimiter()) throw new ParsingException("Unknown token: " + peek());
 		
 		// is it a function call?
 		if (peek("(")) {
@@ -77,7 +79,7 @@ public class Parser {
 	}
 	
 	private Str parseStr () throws ParsingException {
-		if (!gobble("\"")) throw new ParsingException("String literal must start with \"");
+		if (!gobbleDelimiter('"')) throw new ParsingException("String literal must start with \"");
 		StringBuilder sb = new StringBuilder();
 		while (input.charAt(index) != '"' ) {
 			sb.append(input.charAt(index++));
@@ -105,10 +107,9 @@ public class Parser {
 		return exprs;
 	}
 
-	public static Int parseInt (String input) throws ParsingException {
-		Parser p = new Parser(input);
-		p.skipWhiteSpace();
-		String str = p.peek();
+	public Int parseInt (String input) throws ParsingException {
+		skipWhiteSpace();
+		String str = peek();
 		try {
 			return new Int(Integer.parseInt(str));
 		}
@@ -133,7 +134,7 @@ public class Parser {
 	
 	public boolean num () {
 		skipWhiteSpace();
-		return delimiters.contains(input.charAt(index));
+		return Character.isDigit(input.charAt(index));
 	}
 	
 	public boolean num (int i) {
@@ -166,6 +167,14 @@ public class Parser {
 			sb.append(input.charAt(i));
 		}
 		return sb.toString();
+	}
+	
+	public boolean gobbleDelimiter (char delim) {
+		if (input.charAt(index) == delim) {
+			index++;
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean gobble (String expected) {
