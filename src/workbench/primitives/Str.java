@@ -1,6 +1,8 @@
 package primitives;
 
-public class Str implements Primitive {
+import rules.Primitive;
+
+public class Str extends Primitive {
 
 	private final String str;
 	
@@ -9,6 +11,11 @@ public class Str implements Primitive {
 	}
 	
 	public final String toString() {
+		return str;
+	}
+	
+	@Override
+	public String eval () {
 		return str;
 	}
 

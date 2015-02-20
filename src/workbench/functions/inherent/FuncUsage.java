@@ -1,19 +1,21 @@
-package functions;
+package functions.inherent;
 
-import primitives.Primitive;
 import primitives.Str;
+import rules.Primitive;
 import errors.TypeException;
+import functions.Function;
+import functions.FunctionFactory;
 
 public class FuncUsage extends Function {
 
-	public FuncUsage(Primitive[] args) throws TypeException {
+	public FuncUsage (Primitive[] args) throws TypeException {
 		super(args);
 	}
 	
 	public FuncUsage () {
 		super();
 	}
-
+	
 	@Override
 	public void verifyArguments(Primitive[] args) throws TypeException {
 		if (args.length == 1 && args[0] instanceof Str){
@@ -39,9 +41,8 @@ public class FuncUsage extends Function {
 	}
 
 	@Override
-	public Primitive eval() {
-		Function f = FunctionFactory.make(args()[0].toString());
-		return new Str(f.usage());
+	public String eval() {
+		return exec().toString();
 	}
 
 	@Override
@@ -49,6 +50,10 @@ public class FuncUsage extends Function {
 		return Str.class;
 	}
 
-	
+	@Override
+	public Primitive exec() {
+		Function f = FunctionFactory.make(args()[0].toString());
+		return new Str(f.usage());
+	}
 	
 }

@@ -1,10 +1,14 @@
-package functions;
+package functions.inherent;
 
 import java.io.File;
 
 import errors.TypeException;
-import primitives.Primitive;
+import functions.Function;
+import functions.SigTemplate;
+import functions.UsageTemplate;
+import primitives.Err;
 import primitives.Str;
+import rules.Primitive;
 import workbench.IO;
 
 public class FuncLs extends Function {
@@ -12,8 +16,8 @@ public class FuncLs extends Function {
 	public FuncLs (Primitive[] args) throws TypeException {
 		super(args);
 	}
-
-	public FuncLs () {
+	
+	public FuncLs (){
 		super();
 	}
 	
@@ -32,23 +36,6 @@ public class FuncLs extends Function {
 	}
 
 	@Override
-	public Primitive eval () {
-		String fpath = args()[0].toString();
-		if (fpath.equals("output")) fpath = IO.OUTPUT;
-		else fpath = IO.INPUT;
-		File file = new File(fpath);
-		if (!file.isDirectory()) return new Str("Could not find the directory " + file.getAbsolutePath());
-		StringBuilder sb = new StringBuilder();
-		File[] files = file.listFiles();
-		if (files.length == 0) return new Str("No files in " + (args()[0]));
-		for (int i = 0; i < files.length; i++) {
-			sb.append("* " + files[i].getName());
-			if (i != files.length - 1) sb.append("\n");
-		}
-		return new Str(sb.toString());
-	}
-	
-	@Override
 	public String signature () {
 		return SigTemplate.make(name(), new String[]{ "Str" }, new String[]{ "Str" });
 	}
@@ -61,6 +48,28 @@ public class FuncLs extends Function {
 	@Override
 	public String name () {
 		return "ls";
+	}
+
+	@Override
+	public Primitive exec() {
+		String fpath = args()[0].toString();
+		if (fpath.equals("output")) fpath = IO.OUTPUT;
+		else fpath = IO.INPUT;
+		File file = new File(fpath);
+		if (!file.isDirectory()) return new Err("Could not find the directory " + file.getAbsolutePath());
+		StringBuilder sb = new StringBuilder();
+		File[] files = file.listFiles();
+		if (files.length == 0) return new Err("No files in " + (args()[0]));
+		for (int i = 0; i < files.length; i++) {
+			sb.append("* " + files[i].getName());
+			if (i != files.length - 1) sb.append("\n");
+		}
+		return new Str(sb.toString());
+	}
+
+	@Override
+	public String eval () {
+		return exec().toString();
 	}
 	
 }

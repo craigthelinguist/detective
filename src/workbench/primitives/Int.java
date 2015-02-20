@@ -1,6 +1,8 @@
 package primitives;
 
-public class Int implements Primitive {
+import rules.Primitive;
+
+public class Int extends Primitive {
 
 	private final int value;
 	

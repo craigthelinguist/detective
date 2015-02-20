@@ -1,9 +1,10 @@
 package functions;
 
 import errors.TypeException;
-import primitives.Primitive;
+import rules.Primitive;
+import rules.Expression;
 
-public abstract class Function {
+public abstract class Function extends Expression {
 
 	private final Primitive[] args;
 	
@@ -13,7 +14,7 @@ public abstract class Function {
 		this.args = args;
 	}
 	
-	protected Function () {
+	public Function () {
 		this.args = null;
 	}
 	
@@ -34,11 +35,14 @@ public abstract class Function {
 	public abstract String signature ();
 
 	public abstract String name ();
-	
-	public abstract Primitive eval ();
 
 	public abstract Class returnType ();
 	
 	public Primitive[] args () { return this.args; }
+	
+	@Override
+	public String eval () {
+		return exec().toString();
+	}
 	
 }

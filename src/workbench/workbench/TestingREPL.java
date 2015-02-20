@@ -1,7 +1,8 @@
 package workbench;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import errors.ParsingException;
@@ -10,13 +11,25 @@ import functions.Function;
 import functions.FunctionFactory;
 import primitives.Int;
 import primitives.Kore;
-import primitives.Primitive;
 import primitives.Str;
+import rules.Expression;
+import rules.Primitive;
 
 
 public class TestingREPL {
 
 	private static Scanner scan;
+	
+	private static Map<String, Expression> bindings = new HashMap<>();
+	
+	public static void assign(String name, Expression expr) {
+		bindings.put(name, expr);
+	}
+	
+	public static Expression getBinding(String name) {
+		if (bindings.containsKey(name)) return bindings.get(name);
+		else return Kore.kore;
+	}
 	
 	/**
 	 * Return an invocation object which contains the command to execute and any arguments
@@ -99,7 +112,7 @@ public class TestingREPL {
 		scan = new Scanner(System.in); 
 		while (true) {
 			System.out.print(">");
-			String input = scan.nextLine().trim();			
+			String input = scan.nextLine().trim();	
 			try {
 				Function func = parseCommand(input);
 				if (func.returnType() != Kore.class) System.out.println(func.eval() + "\n");

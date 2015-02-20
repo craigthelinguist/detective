@@ -1,6 +1,8 @@
 package primitives;
 
-public class Err implements Primitive {
+import rules.Primitive;
+
+public class Err extends Primitive {
 
 	private final String msg;
 	
@@ -9,7 +11,7 @@ public class Err implements Primitive {
 	}
 	
 	public String toString() {
-		return msg;
+		return "=== ERROR ===\n"+msg;
 	}
 	
 	public boolean equals(Object other) {
@@ -20,6 +22,16 @@ public class Err implements Primitive {
 			return msg.equals(other.toString());
 		}
 		else return false;
+	}
+
+	@Override
+	public Primitive exec () {
+		return this;
+	}
+	
+	@Override
+	public String eval() {
+		return toString();
 	}
 	
 }
