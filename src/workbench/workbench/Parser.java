@@ -9,10 +9,12 @@ import errors.ReflectionException;
 import errors.TypeException;
 import functions.FunctionFactory;
 import primitives.Int;
+import primitives.Seq;
 import primitives.Str;
 import rules.Assignment;
 import rules.Expression;
 import rules.Primitive;
+import rules.Variable;
 
 public class Parser {
 
@@ -27,7 +29,7 @@ public class Parser {
 	}
 	
 	private static List<Character> delimiters = Arrays.asList(new Character[]{
-		'(', ')', ';', '\n', ',', '=', ';'
+		'(', ')', ';', '\n', ',', '=', ';', '[', ']'
 	});
 	
 	private static List<Character> whitespace = Arrays.asList(new Character[]{
@@ -58,6 +60,23 @@ public class Parser {
 				gobble("=");
 				Expression expr = parseExpression();
 				return new Assignment(token, expr);
+			}
+			// array subscripting
+			else if (!done() && peek("[")) {
+
+				Primitive result = TestingREPL.getBinding(token).exec();
+				if (!(result instanceof Seq)) throw new ParsingException("Can only subscript into Seq or Host.");
+				Seq array = (Seq)result;
+				gobble("[");
+				String str = peek();
+				Expression expr = new Parser(str).parseExpression();
+				Primitive prim = expr.exec();
+				if (!(prim instanceof Int)) throw new ParsingException("Array subscript must be an Int.");
+				Int indx = (Int)prim;
+				gobble(str);
+				if (!gobble("]")) throw new ParsingException("Missing ']' when parsing subscript.");
+				Primitive[] args = new Primitive[]{ array, indx };
+				return FunctionFactory.make("get", args);
 			}
 			else return TestingREPL.getBinding(token);
 		}
