@@ -1,5 +1,9 @@
 package functions.inherent;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import primitives.Str;
 import rules.Primitive;
 import errors.TypeException;
@@ -45,12 +49,15 @@ public class FuncHelp extends Function {
 
 	@Override
 	public Primitive exec () {
-		String sb = "List of commands: \n";
-		for (String str : FunctionFactory.funcs.keySet()) {
+		StringBuilder sb = new StringBuilder("List of commands: \n");
+		List<String> strs = new ArrayList<>();
+		for (String str : FunctionFactory.funcs.keySet()) strs.add(str);
+		Collections.sort(strs);
+		for (String str : strs) {
 			Function f = FunctionFactory.make(str);
-			sb += f.signature() + "\n";
+			sb.append(f.signature() + "\n");
 		}
-		return new Str(sb.toString());		
+		return new Str(sb.toString());
 	}
 	
 	@Override

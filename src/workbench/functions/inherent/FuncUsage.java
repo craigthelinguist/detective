@@ -32,7 +32,7 @@ public class FuncUsage extends Function {
 
 	@Override
 	public String signature() {
-		return "usage :: (str) -> (str)";
+		return "usage :: (Str) -> (Str)";
 	}
 
 	@Override

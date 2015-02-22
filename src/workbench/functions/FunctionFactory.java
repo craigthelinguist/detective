@@ -3,21 +3,21 @@ package functions;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import errors.ParsingException;
 import errors.ReflectionException;
 import errors.TypeException;
 import functions.inherent.FuncAlias;
 import functions.inherent.FuncAliases;
+import functions.inherent.FuncCluster;
 import functions.inherent.FuncClusterer;
 import functions.inherent.FuncHelp;
+import functions.inherent.FuncLoad;
 import functions.inherent.FuncLs;
+import functions.inherent.FuncPrintSeq;
 import functions.inherent.FuncQuit;
 import functions.inherent.FuncUsage;
-import primitives.Str;
 import rules.Primitive;
 
 public class FunctionFactory {
@@ -33,6 +33,9 @@ public class FunctionFactory {
 		funcs.put("alias", FuncAlias.class);
 		funcs.put("quit", FuncQuit.class);
 		funcs.put("clusterer", FuncClusterer.class);
+		funcs.put("cluster", FuncCluster.class);
+		funcs.put("load", FuncLoad.class);
+		funcs.put("printseq", FuncPrintSeq.class);
 	}
 	
 	public static final Map<String, String> aliases = new HashMap<>();

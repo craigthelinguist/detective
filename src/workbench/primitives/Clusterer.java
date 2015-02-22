@@ -1,10 +1,14 @@
 package primitives;
 
+import java.util.List;
+
+import clustering.Cluster;
 import clustering.feature.FeatureClusterer;
 import clustering.feature.aggregation.AggregateStrategy;
 import clustering.feature.aggregation.BasicAggregate;
 import clustering.feature.aggregation.VectorAggregate;
 import clustering.feature.assignment.AssignmentStrategy;
+import dns.Host;
 import errors.TypeException;
 import rules.Primitive;
 
@@ -17,6 +21,10 @@ public class Clusterer extends Primitive {
 		clusterer = new FeatureClusterer(aggregate, assignment);
 		clusterer.setSubsetSize(subsetSize);
 		clusterer.setNumClusters(numClusters);
+	}
+	
+	public List<Cluster> cluster (List<Host> hosts) {
+		return clusterer.cluster(hosts);
 	}
 	
 	@Override

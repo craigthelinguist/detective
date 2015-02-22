@@ -3,15 +3,14 @@ package functions.inherent;
 import java.util.Arrays;
 import java.util.List;
 
-import clustering.feature.FeatureClusterer;
 import clustering.feature.aggregation.AggregateStrategy;
 import clustering.feature.aggregation.BasicAggregate;
 import clustering.feature.aggregation.VectorAggregate;
 import clustering.feature.assignment.AssignmentStrategy;
 import clustering.feature.assignment.RandomAssignment;
-
 import primitives.Clusterer;
 import primitives.Int;
+import primitives.Seq;
 import primitives.Str;
 import rules.Primitive;
 import errors.TypeException;
@@ -49,7 +48,7 @@ public class FuncClusterer extends Function {
 		else if (assignName.equals("predefined")){
 			throw new UnsupportedOperationException("Predefined assignment argument not yet implemented for Clusterer()");
 		}
-		
+				
 		return new Clusterer(subsetSize, numClusters, aggreg, assign);
 				
 	}
@@ -62,9 +61,20 @@ public class FuncClusterer extends Function {
 		if (!(args[2] instanceof Str) || !validAggregateStrats.contains(args[2])){
 			throw new TypeException("Clusterer's third argument, aggregation_strategy, should be \"vector\" or \"basic\")");
 		}
-		if (!(args[3] instanceof Str) || !validAssignStrats.contains(args[3])){
-			throw new TypeException("Clusterer's fourth argument, assignment_strategy, should be \"random\" or \"predefined\"");
+		
+		if (!(args[3] instanceof Str) && !(args[3] instanceof Seq)) {
+			throw new TypeException("Clusterer's fourth argument, assignment_Strategy, should be \"random\" or a sequence of vectors.");
 		}
+		
+		if (args[3] instanceof Str && !(args[3].toString().equals("random"))) {
+			throw new TypeException("Clusterer's fourth argument, assignment_Strategy, should be \"random\" or a sequence of vectors.");
+		}
+		
+		if (args[3] instanceof Seq) {
+			// TODO: CHECK THAT THIS IS A SEQUENCE OF VECTORS
+			throw new TypeException("Predefined seq of vectors currently not supported.");	
+		}
+		
 	}
 
 	@Override
@@ -86,7 +96,7 @@ public class FuncClusterer extends Function {
 
 	@Override
 	public String name() {
-		return "Clusterer";
+		return "clusterer";
 	}
 
 	@Override
