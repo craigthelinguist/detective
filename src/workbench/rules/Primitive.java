@@ -13,5 +13,7 @@ public abstract class Primitive extends Expression {
 	}
 	
 	public abstract String typeName ();
+
+	
 	
 }

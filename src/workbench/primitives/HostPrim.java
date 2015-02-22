@@ -1,14 +1,25 @@
 package primitives;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dns.Host;
 import rules.Primitive;
 
-public class HostPrim extends Primitive {
+public class HostPrim extends Seq {
 
 	private Host host;
 	
-	public HostPrim (Host host) {
+	private HostPrim (List<Str> strs, Host host) {
+		super(strs);
 		this.host = host;
+	}
+	
+	public static HostPrim make (Host host) {
+		List<String> strings = host.getQueries();
+		List<Str> strs = new ArrayList<>();
+		for (String s : strings) strs.add(new Str(s));
+		return new HostPrim(strs, host);
 	}
 	
 	@Override

@@ -55,7 +55,7 @@ public class FuncLoadHosts extends Function {
 					}
 					
 					Host host = new Host(ip, domains);
-					HostPrim hostPrim = new HostPrim(host);
+					HostPrim hostPrim = HostPrim.make(host);
 					hosts.add(hostPrim);
 				}
 	
