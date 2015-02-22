@@ -19,5 +19,12 @@ public class Str extends Primitive {
 	public String eval () {
 		return str;
 	}
+	
+	@Override
+	public boolean equals (Object other) {
+		if (!(other instanceof Str)) return false;
+		Str s = (Str)other;
+		return s.str.equals(str);
+	}
 
 }

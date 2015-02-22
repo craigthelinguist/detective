@@ -14,6 +14,10 @@ public class Int extends Primitive {
 		return "" + value;
 	}
 	
+	public int toInt() {
+		return value;
+	}
+	
 	public boolean equals (Object other) {
 		if (other instanceof Integer){
 			int i = (int)other;

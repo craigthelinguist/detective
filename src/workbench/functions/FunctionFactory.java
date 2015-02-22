@@ -12,6 +12,7 @@ import errors.ReflectionException;
 import errors.TypeException;
 import functions.inherent.FuncAlias;
 import functions.inherent.FuncAliases;
+import functions.inherent.FuncClusterer;
 import functions.inherent.FuncHelp;
 import functions.inherent.FuncLs;
 import functions.inherent.FuncQuit;
@@ -31,6 +32,7 @@ public class FunctionFactory {
 		funcs.put("aliases", FuncAliases.class);
 		funcs.put("alias", FuncAlias.class);
 		funcs.put("quit", FuncQuit.class);
+		funcs.put("clusterer", FuncClusterer.class);
 	}
 	
 	public static final Map<String, String> aliases = new HashMap<>();
@@ -78,7 +80,8 @@ public class FunctionFactory {
 		} catch (IllegalArgumentException e) {
 			throw new ReflectionException(e.getMessage());
 		} catch (InvocationTargetException e) {
-			throw (TypeException)e.getTargetException();
+			if (e.getTargetException() instanceof TypeException) throw (TypeException)e.getTargetException();
+			else throw new ReflectionException(e.getMessage());
 		}
 
 	}

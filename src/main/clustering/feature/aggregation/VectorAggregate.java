@@ -179,4 +179,8 @@ public class VectorAggregate implements AggregateStrategy {
 		
 	}
 	
+	public String toString () {
+		return "VectorAggregate";
+	}
+	
 }

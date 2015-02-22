@@ -64,5 +64,9 @@ public class BasicAggregate implements AggregateStrategy {
 		return subsets;
 	}
 	
+	public String toString(){
+		return "BasicAggregate";
+	}
+	
 	
 }

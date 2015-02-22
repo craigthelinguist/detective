@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import primitives.Int;
 import primitives.Kore;
 import rules.Expression;
 import rules.Primitive;
@@ -14,7 +15,7 @@ public class TestingREPL {
 	private static Scanner scan;
 	
 	private static Map<String, Expression> bindings = new HashMap<>();
-	
+
 	public static void assign(String name, Expression expr) {
 		bindings.put(name, expr);
 	}

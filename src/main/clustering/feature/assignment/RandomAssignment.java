@@ -35,6 +35,8 @@ public class RandomAssignment implements AssignmentStrategy {
 		return centroids;
 	}
 
-	
+	public String toString() {
+		return "RandomAssignment";
+	}
 	
 }

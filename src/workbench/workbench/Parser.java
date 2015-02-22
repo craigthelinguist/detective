@@ -38,7 +38,11 @@ public class Parser {
 	throws ParsingException, ReflectionException, TypeException {
 		
 		// parse int literal
-		if (num()) return parseInt(input);
+		if (num()) {
+			Int intt = parseInt(input);
+			index += intt.toString().length();
+			return intt;
+		}
 		
 		String token = peek();
 		index += token.length();

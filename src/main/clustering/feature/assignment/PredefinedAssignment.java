@@ -17,4 +17,8 @@ public class PredefinedAssignment implements AssignmentStrategy {
 		return this.centroids;
 	}
 	
+	public String toString() {
+		return "PredefinedAssignment";
+	}
+	
 }

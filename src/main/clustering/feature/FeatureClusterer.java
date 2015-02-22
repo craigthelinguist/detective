@@ -16,26 +16,43 @@ import clustering.feature.assignment.AssignmentStrategy;
 import dns.Host;
 
 public class FeatureClusterer implements ClusterStrategy {
-
-	private static int SUBSET_SIZE = 5;
-	private static int NUM_CLUSTERS = 4;
-	private static int MAX_ITERATIONS = 5;
 	
-	// Configruation methods.
+	// Fields.
 	// ------------------------------------------------------------
 	
-	public static void setSubsetSize (int sz) { SUBSET_SIZE = sz; }
-	public static void setNumClusters (int cl) { NUM_CLUSTERS = cl; }
-	public static void setMaxIterations (int it) { MAX_ITERATIONS = it; }
+	private int SUBSET_SIZE = 5;
+	private int NUM_CLUSTERS = 4;
+	private int MAX_ITERATIONS = 5;	
 	private final AggregateStrategy aggreg;
 	private final AssignmentStrategy assign;
+	
+	
+	
+	// Constructors.
+	// ------------------------------------------------------------
 	
 	public FeatureClusterer (AggregateStrategy aggreg, AssignmentStrategy assign) {
 		this.aggreg = aggreg;
 		this.assign = assign;
 	}
-	
 
+	
+	
+	// Getters and setters.
+	// ------------------------------------------------------------
+	
+	public void setSubsetSize (int sz) { SUBSET_SIZE = sz; }
+	public void setNumClusters (int cl) { NUM_CLUSTERS = cl; }
+	public void setMaxIterations (int it) { MAX_ITERATIONS = it; }
+	
+	public int getSubsetSize () { return SUBSET_SIZE; }
+	public int getNumClusters () { return NUM_CLUSTERS; }
+	public int getMaxIterations () { return MAX_ITERATIONS; }
+	public String getAggregationStrategy () { return aggreg.toString(); }
+	public String getAssignmentStrategy () { return assign.toString(); }
+	
+	
+	
 	// Public methods.
 	// ------------------------------------------------------------
 	
