@@ -46,9 +46,16 @@ public class Parser {
 		// parse string literal
 		if (token.startsWith("\"") && token.endsWith("\"")) return new Parser(token).parseStr();
 		
-		// parse variable
+		// is token reference to an existing variable?
 		if (TestingREPL.getBinding(token) != null) {
-			return TestingREPL.getBinding(token);
+			
+			// either reassigning variable, or dereferencing.
+			if (!done() && peek("=")) {
+				gobble("=");
+				Expression expr = parseExpression();
+				return new Assignment(token, expr);
+			}
+			else return TestingREPL.getBinding(token);
 		}
 		
 		// need delimiter
@@ -76,6 +83,13 @@ public class Parser {
 			throw new ParsingException("Unknown token found while parsing expression: " + token);
 		}
 		
+	}
+	
+	private boolean done () {
+		if (this.index == input.length()) return true;
+		skipWhiteSpace();
+		if (this.index == input.length()) return true;
+		return false;
 	}
 	
 	private Str parseStr () throws ParsingException {
