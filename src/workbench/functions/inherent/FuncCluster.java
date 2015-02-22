@@ -1,10 +1,13 @@
  package functions.inherent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import clustering.Cluster;
 import dns.Host;
+import primitives.ClusterPrim;
 import primitives.Clusterer;
+import primitives.HostPrim;
 import primitives.Seq;
 import rules.Primitive;
 import errors.TypeException;
@@ -25,9 +28,18 @@ public class FuncCluster extends Function {
 	@Override
 	public Primitive exec() {
 		Clusterer cl = (Clusterer)args()[0];
-		List<Host> hosts = ((Seq<Host>)args()[1]).asList();
+		List<HostPrim> hostPrims = ((Seq<HostPrim>)args()[1]).asList();
+		List<Host> hosts = new ArrayList<>();
+		for (HostPrim hp : hostPrims) {
+			hosts.add(hp.getHost());
+		}
 		List<Cluster> clusters = cl.cluster(hosts);
-		return new Seq<>(clusters);
+		List<ClusterPrim> clusterPrims = new ArrayList<ClusterPrim>();
+		for (Cluster cluster : clusters) {
+			clusterPrims.add(new ClusterPrim(cluster));
+		}
+		Seq<ClusterPrim> seqClusterPrims = new Seq<>(clusterPrims);
+		return seqClusterPrims;
 	}
 
 	@Override
@@ -52,7 +64,7 @@ public class FuncCluster extends Function {
 
 	@Override
 	public String signature() {
-		return SigTemplate.make(name(), new String[]{ "Clusterer" }, new String[]{ "Seq<Str>" });
+		return SigTemplate.make(name(), new String[]{ "Clusterer" }, new String[]{ "Seq<Cluster>" });
 	}
 
 	@Override

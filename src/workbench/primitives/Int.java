@@ -29,4 +29,9 @@ public class Int extends Primitive {
 		else return false;
 	}
 	
+	@Override
+	public String typeName() {
+		return "Int";
+	}
+	
 }

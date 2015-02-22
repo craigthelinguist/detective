@@ -31,9 +31,9 @@ public class FuncVectorise extends Function {
 			strings.add(args()[0].toString());
 		}
 		else {
-			Seq<String> seq = (Seq<String>)args()[0];
-			for (String s : seq) {
-				strings.add(s);
+			Seq<Str> seq = (Seq<Str>)args()[0];
+			for (Str s : seq) {
+				strings.add(s.toString());
 			}
 		}
 		Vector vector = Vectors.featureVector(null, strings);

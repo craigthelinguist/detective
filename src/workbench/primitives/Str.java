@@ -26,5 +26,10 @@ public class Str extends Primitive {
 		Str s = (Str)other;
 		return s.str.equals(str);
 	}
-
+	
+	@Override
+	public String typeName() {
+		return "Str";
+	}
+	
 }

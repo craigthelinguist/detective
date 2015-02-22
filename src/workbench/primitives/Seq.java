@@ -5,7 +5,7 @@ import java.util.List;
 
 import rules.Primitive;
 
-public class Seq<T> extends Primitive implements Iterable<T> {
+public class Seq<T extends Primitive> extends Primitive implements Iterable<T> {
 	
 	private List<T> elems;
 	
@@ -21,6 +21,10 @@ public class Seq<T> extends Primitive implements Iterable<T> {
 		return elems;
 	}
 
+	public Primitive get (int indx) {
+		return elems.get(indx);
+	}
+	
 	@Override
 	public Iterator<T> iterator() {
 		return elems.iterator();
@@ -30,4 +34,11 @@ public class Seq<T> extends Primitive implements Iterable<T> {
 		return elems.size();
 	}
 	
+	@Override
+	public String typeName() {
+		Primitive p = elems.get(0);
+		String type = p.typeName();
+		return "Seq<" + type + ">";
+	}
+
 }

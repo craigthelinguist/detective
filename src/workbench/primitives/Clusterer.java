@@ -42,5 +42,10 @@ public class Clusterer extends Primitive {
 		sb.append("Assignment: " + clusterer.getAssignmentStrategy());
 		return sb.toString();
 	}
+
+	@Override
+	public String typeName() {
+		return "Cluster";
+	}
 	
 }

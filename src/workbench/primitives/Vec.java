@@ -21,4 +21,9 @@ public class Vec extends Primitive {
 		return v.vector.equals(vector);
 	}
 	
+	@Override
+	public String typeName() {
+		return "Vec";
+	}
+	
 }

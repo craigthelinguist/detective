@@ -38,13 +38,13 @@ public class FuncLoad extends Function {
 			try{
 				fr = new FileReader(file);
 				br = new BufferedReader(fr);
-				List<String> names = new ArrayList<>();
+				List<Str> names = new ArrayList<>();
 				String line = "";
 				while ((line = br.readLine()) != null) {
 					String name = line.trim();
-					names.add(name);
+					names.add(new Str(name));
 				}
-				return new Seq<>(names);
+				return new Seq<Str>(names);
 			}
 			finally {
 				fr.close();

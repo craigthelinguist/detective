@@ -34,4 +34,9 @@ public class Err extends Primitive {
 		return toString();
 	}
 	
+	@Override
+	public String typeName() {
+		return "Err";
+	}
+	
 }

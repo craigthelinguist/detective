@@ -9,13 +9,13 @@ import functions.Function;
 import functions.SigTemplate;
 import functions.UsageTemplate;
 
-public class FuncPrintSeq extends Function {
+public class FuncContents extends Function {
 
-	public FuncPrintSeq (Primitive[] prims) throws TypeException {
+	public FuncContents (Primitive[] prims) throws TypeException {
 		super(prims);
 	}
 	
-	public FuncPrintSeq () {
+	public FuncContents () {
 		super();
 	}
 	
@@ -37,15 +37,15 @@ public class FuncPrintSeq extends Function {
 	public void verifyArguments(Primitive[] args) throws TypeException {
 		if (args.length == 1) {
 			if (!(args[0] instanceof Seq)){
-				throw new TypeException("print_list's first argument should be a Seq.");
+				throw new TypeException("first argument should be a Seq.");
 			}
 		}
 		else if (args.length == 2) {
 			if (!(args[1] instanceof Int)) {
-				throw new TypeException("print_list's optional second argument should be an Int.");
+				throw new TypeException("optional second argument should be an Int.");
 			}
 		}
-		else throw new TypeException("print_list takes 1 or 2 arguments.");
+		else throw new TypeException("Takes 1 or 2 arguments, not " + args.length);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class FuncPrintSeq extends Function {
 
 	@Override
 	public String name() {
-		return "printseq";
+		return "contents";
 	}
 
 	@Override

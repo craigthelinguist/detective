@@ -12,4 +12,9 @@ public class Kore extends Primitive {
 		return "void";
 	}
 	
+	@Override
+	public String typeName() {
+		return "Kore";
+	}
+	
 }
