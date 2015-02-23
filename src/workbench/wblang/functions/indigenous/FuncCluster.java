@@ -36,7 +36,7 @@ public class FuncCluster extends Function {
 		List<Cluster> clusters = cl.cluster(hosts);
 		List<ClusterPrim> clusterPrims = new ArrayList<ClusterPrim>();
 		for (Cluster cluster : clusters) {
-			clusterPrims.add(new ClusterPrim(cluster));
+			clusterPrims.add(ClusterPrim.make(cluster));
 		}
 		Seq<ClusterPrim> seqClusterPrims = new Seq<>(clusterPrims);
 		return seqClusterPrims;
@@ -64,7 +64,7 @@ public class FuncCluster extends Function {
 
 	@Override
 	public String signature() {
-		return SigTemplate.make(name(), new String[]{ "Clusterer" }, new String[]{ "Seq<Cluster>" });
+		return SigTemplate.make(name(), new String[]{ "Clusterer", "Seq<Host>" }, new String[]{ "Seq<Cluster>" });
 	}
 
 	@Override

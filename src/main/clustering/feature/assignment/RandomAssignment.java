@@ -18,7 +18,7 @@ public class RandomAssignment implements AssignmentStrategy {
 	@Override
 	public List<Vector> assignCentroids(List<Vector> vectors) {
 	
-		if (numCentroids < vectors.size()) throw new IllegalStateException("Assigning more centroids than there are vectors.");
+		if (numCentroids > vectors.size()) throw new IllegalStateException("Assigning more centroids than there are vectors.");
 		
 		// pick out some random vectors to use as centroids
 		Set<Integer> indices = new HashSet<>();
