@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import wblang.primitives.Int;
 import wblang.primitives.Kore;
 import wblang.rules.Expression;
 import wblang.rules.Primitive;

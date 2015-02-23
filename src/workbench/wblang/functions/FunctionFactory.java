@@ -33,6 +33,7 @@ public class FunctionFactory {
 		funcs.put("type", FuncType.class);
 		funcs.put("contents", FuncContents.class);
 		funcs.put("print", FuncPrint.class);
+		funcs.put("seq", FuncSeq.class);
 	}
 	
 	public static final Map<String, String> aliases = new HashMap<>();

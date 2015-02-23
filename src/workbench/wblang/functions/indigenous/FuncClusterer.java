@@ -1,5 +1,6 @@
 package wblang.functions.indigenous;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,7 +8,9 @@ import clustering.feature.aggregation.AggregateStrategy;
 import clustering.feature.aggregation.BasicAggregate;
 import clustering.feature.aggregation.VectorAggregate;
 import clustering.feature.assignment.AssignmentStrategy;
+import clustering.feature.assignment.PredefinedAssignment;
 import clustering.feature.assignment.RandomAssignment;
+import vectors.Vector;
 import wblang.errors.TypeException;
 import wblang.functions.Function;
 import wblang.functions.SigTemplate;
@@ -16,6 +19,7 @@ import wblang.primitives.Clusterer;
 import wblang.primitives.Int;
 import wblang.primitives.Seq;
 import wblang.primitives.Str;
+import wblang.primitives.Vec;
 import wblang.rules.Primitive;
 
 public class FuncClusterer extends Function {
@@ -36,7 +40,6 @@ public class FuncClusterer extends Function {
 		int subsetSize = ((Int)args()[0]).toInt();
 		int numClusters = ((Int)args()[1]).toInt();
 		String aggregName = args()[2].toString();
-		String assignName = args()[3].toString();
 		
 		AggregateStrategy aggreg = null;
 		AssignmentStrategy assign = null;
@@ -44,9 +47,14 @@ public class FuncClusterer extends Function {
 		if (aggregName.equals("vector")) aggreg = new VectorAggregate(subsetSize);
 		else if (aggregName.equals("basic")) aggreg = new BasicAggregate(subsetSize);
 		
-		if (assignName.equals("random")) assign = new RandomAssignment(numClusters);
-		else if (assignName.equals("predefined")){
-			throw new UnsupportedOperationException("Predefined assignment argument not yet implemented for Clusterer()");
+		if (args()[3].toString().equals("random")) assign = new RandomAssignment(numClusters);
+		else {
+			Seq<Vec> vects = (Seq<Vec>)args()[3];
+			List<Vector> vectors = new ArrayList<>();
+			for (Vec vec : vects) {
+				vectors.add(vec.asVector());
+			}
+			assign = new PredefinedAssignment(vectors);
 		}
 				
 		return new Clusterer(subsetSize, numClusters, aggreg, assign);
@@ -70,9 +78,11 @@ public class FuncClusterer extends Function {
 			throw new TypeException("Clusterer's fourth argument, assignment_Strategy, should be \"random\" or a sequence of vectors.");
 		}
 		
-		if (args[3] instanceof Seq) {
-			// TODO: CHECK THAT THIS IS A SEQUENCE OF VECTORS
-			throw new TypeException("Predefined seq of vectors currently not supported.");	
+		if (args[3] instanceof Seq) {			
+			Seq<Primitive> seq = (Seq<Primitive>)args[3];
+			for (Primitive prim : seq) {
+				if (!(prim instanceof Vec)) throw new TypeException("Clusterer's fourth argument should be \"random\" or seq<vec>");
+			}
 		}
 		
 	}

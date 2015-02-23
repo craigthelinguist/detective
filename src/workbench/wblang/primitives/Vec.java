@@ -26,4 +26,8 @@ public class Vec extends Primitive {
 		return "Vec";
 	}
 	
+	public Vector asVector () {
+		return vector;
+	}
+	
 }
