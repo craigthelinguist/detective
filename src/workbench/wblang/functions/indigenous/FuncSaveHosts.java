@@ -31,7 +31,6 @@ public class FuncSaveHosts extends Function {
 		String fpath = "src/output/" + s;
 		fpath = fpath.replace('/', File.separatorChar);
 		File file = new File(fpath);
-		if (!file.exists()) return new Err("Could not find " + fpath);
 		
 		try {
 			

@@ -40,6 +40,7 @@ public class FunctionFactory {
 		funcs.put("generate", FuncGenerate.class);
 		funcs.put("save", FuncSave.class);
 		funcs.put("savehosts", FuncSaveHosts.class);
+		funcs.put("concat", FuncConcat.class);
 	}
 	
 	public static final Map<String, String> aliases = new HashMap<>();

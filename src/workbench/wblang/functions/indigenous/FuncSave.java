@@ -29,16 +29,15 @@ public class FuncSave extends Function {
 		String fpath = "src/output/" + fname;
 		fpath = fpath.replace('/', File.separatorChar);
 		File file = new File(fpath);
-		if (!file.exists()) return new Err("Could not save to directory: " + fpath);
 		try {
 			PrintStream ps = null;
 			try{
 				ps = new PrintStream(file);
 				Seq<Str> strings = (Seq<Str>)args()[1];
 				for (Str s : strings) {
-					ps.println(s.toString() + "\n");
+					ps.println(s.toString());
 				}
-				return new Str("Saved.");
+				return new Str("Saved to " + file.getAbsolutePath());
 			}
 			finally {
 				if (ps != null) ps.close();
