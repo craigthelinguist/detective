@@ -28,6 +28,11 @@ public class Str extends Primitive {
 	}
 	
 	@Override
+	public int hashCode () {
+		return str.hashCode();
+	}
+	
+	@Override
 	public String typeName() {
 		return "Str";
 	}

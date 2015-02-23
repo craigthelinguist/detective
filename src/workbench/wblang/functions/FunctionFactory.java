@@ -34,6 +34,12 @@ public class FunctionFactory {
 		funcs.put("contents", FuncContents.class);
 		funcs.put("print", FuncPrint.class);
 		funcs.put("seq", FuncSeq.class);
+		funcs.put("composition", FuncComposition.class);
+		funcs.put("hash", FuncHash.class);
+		funcs.put("hashput", FuncHashPut.class);
+		funcs.put("generate", FuncGenerate.class);
+		funcs.put("save", FuncSave.class);
+		funcs.put("savehosts", FuncSaveHosts.class);
 	}
 	
 	public static final Map<String, String> aliases = new HashMap<>();

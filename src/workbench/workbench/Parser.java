@@ -9,6 +9,7 @@ import wblang.errors.ReflectionException;
 import wblang.errors.TypeException;
 import wblang.functions.Function;
 import wblang.functions.FunctionFactory;
+import wblang.primitives.Hash;
 import wblang.primitives.Int;
 import wblang.primitives.Seq;
 import wblang.primitives.Str;
@@ -66,10 +67,10 @@ public class Parser {
 			// array subscripting
 			else if (!done() && peek("[")) {
 
-				Primitive array = TestingREPL.getBinding(token).exec();
-				if (!(array instanceof Seq)) throw new ParsingException("Can only subscript into Seq or Host.");
-				Function f = parseSlice((Seq)array);
-				return f;
+				Primitive prim = TestingREPL.getBinding(token).exec();
+				if (prim instanceof Seq) return parseSlice((Seq)prim);	
+				else if (prim instanceof Hash) return parseHashIndex((Hash)prim);
+				else throw new ParsingException("Can only subscript into Seq, Host, or Hash.");
 				
 			}
 			else return TestingREPL.getBinding(token);
@@ -92,7 +93,8 @@ public class Parser {
 		else if (peek("=")) {
 			gobble("=");
 			Expression expr = parseExpression();
-			return new Assignment(token, expr);
+			Primitive prim = expr.exec();
+			return new Assignment(token, prim);
 		}
 	
 		// unknown
@@ -100,6 +102,17 @@ public class Parser {
 			throw new ParsingException("Unknown token found while parsing expression: " + token);
 		}
 		
+	}
+	
+	private Expression parseHashIndex (Hash hash) throws ParsingException, TypeException, ReflectionException {
+		if (!gobble("[")) throw new ParsingException("Hash indexing must start with '['");
+		Primitive key = parseExpression().exec();
+		if (!gobble("]")) throw new ParsingException("Hash indexing must end with ']'");
+		if (done()) return hash.get(key);
+		if (!gobble("=")) throw new ParsingException("Expected '='");
+		Primitive value = parseExpression().exec();
+		Primitive[] args = new Primitive[]{ hash, key, value };
+		return FunctionFactory.make("hashput", args);
 	}
 	
 	private Function parseSlice (Seq seq) throws ParsingException, TypeException, ReflectionException {

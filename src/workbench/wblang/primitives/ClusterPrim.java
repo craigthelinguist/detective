@@ -7,7 +7,7 @@ import java.util.List;
 import clustering.Cluster;
 import wblang.rules.Primitive;
 
-public class ClusterPrim extends Seq {
+public class ClusterPrim extends Seq<Str> {
 
 	private Cluster cluster;
 	

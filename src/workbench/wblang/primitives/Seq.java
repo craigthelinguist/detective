@@ -25,6 +25,10 @@ public class Seq<T extends Primitive> extends Primitive implements Iterable<T> {
 		return elems.get(indx);
 	}
 	
+	public boolean contains (T k) {
+		return elems.contains(k);
+	}
+	
 	@Override
 	public Iterator<T> iterator() {
 		return elems.iterator();
@@ -40,5 +44,5 @@ public class Seq<T extends Primitive> extends Primitive implements Iterable<T> {
 		String type = p.typeName();
 		return "Seq<" + type + ">";
 	}
-
+	
 }
