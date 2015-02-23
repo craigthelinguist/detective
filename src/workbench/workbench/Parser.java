@@ -7,6 +7,7 @@ import java.util.List;
 import wblang.errors.ParsingException;
 import wblang.errors.ReflectionException;
 import wblang.errors.TypeException;
+import wblang.functions.Function;
 import wblang.functions.FunctionFactory;
 import wblang.primitives.Int;
 import wblang.primitives.Seq;
@@ -29,7 +30,7 @@ public class Parser {
 	}
 	
 	private static List<Character> delimiters = Arrays.asList(new Character[]{
-		'(', ')', ';', '\n', ',', '=', ';', '[', ']'
+		'(', ')', ';', '\n', ',', '=', ';', '[', ']', ':'
 	});
 	
 	private static List<Character> whitespace = Arrays.asList(new Character[]{
@@ -64,19 +65,11 @@ public class Parser {
 			// array subscripting
 			else if (!done() && peek("[")) {
 
-				Primitive result = TestingREPL.getBinding(token).exec();
-				if (!(result instanceof Seq)) throw new ParsingException("Can only subscript into Seq or Host.");
-				Seq array = (Seq)result;
-				gobble("[");
-				String str = peek();
-				Expression expr = new Parser(str).parseExpression();
-				Primitive prim = expr.exec();
-				if (!(prim instanceof Int)) throw new ParsingException("Array subscript must be an Int.");
-				Int indx = (Int)prim;
-				gobble(str);
-				if (!gobble("]")) throw new ParsingException("Missing ']' when parsing subscript.");
-				Primitive[] args = new Primitive[]{ array, indx };
-				return FunctionFactory.make("get", args);
+				Primitive array = TestingREPL.getBinding(token).exec();
+				if (!(array instanceof Seq)) throw new ParsingException("Can only subscript into Seq or Host.");
+				Function f = parseSlice((Seq)array);
+				return f;
+				
 			}
 			else return TestingREPL.getBinding(token);
 		}
@@ -105,6 +98,70 @@ public class Parser {
 		else {
 			throw new ParsingException("Unknown token found while parsing expression: " + token);
 		}
+		
+	}
+	
+	private Function parseSlice (Seq seq) throws ParsingException, TypeException, ReflectionException {
+		if (!gobble("[")) throw new ParsingException("Array subscript must start with '['");
+		Int startIndx;
+		Int endIndx;
+		Primitive prim;
+		
+		if (gobble(":")) {
+			
+			// slice of the form array[:]
+			if (gobble("]")) {
+				startIndx = new Int(0);
+				endIndx = new Int(seq.size());
+				Primitive[] prims = new Primitive[]{ seq, startIndx, endIndx };
+				return FunctionFactory.make("slice", prims);	
+			}
+			
+			// slice of the form array[:end]
+			else {
+				startIndx = new Int(0);
+				String str = peek();
+				prim = new Parser(str).parseExpression().exec();
+				if (!(prim instanceof Int)) throw new ParsingException("Array subscripts must be an Int.");
+				endIndx = (Int)prim;
+				gobble(str);
+				if (!gobble("]")) throw new ParsingException("Slice did not end with ']'");
+				Primitive[] prims = new Primitive[]{ seq, startIndx, endIndx };
+				return FunctionFactory.make("slice", prims);
+			}
+			
+		}
+		
+		// slice of the form array[start:
+		String str = peek();
+		prim = new Parser(str).parseExpression().exec();
+		if (!(prim instanceof Int)) throw new ParsingException("Array subscripts must be an Int.");
+		startIndx = (Int)prim;
+		gobble(str);
+			
+		// array subscript array[indx]
+		if (gobble("]")) {
+			Primitive[] prims = new Primitive[]{ seq, startIndx };
+			return FunctionFactory.make("get", prims);
+		}
+		else if (!gobble(":")) throw new ParsingException("Unknown token while parsing slice: " + peek());
+		
+		// unbounded slice, e.g.: array[start:]
+		if (gobble("]")) {
+			endIndx = new Int(seq.size());
+			Primitive[] prims = new Primitive[]{ seq, startIndx, endIndx };
+			return FunctionFactory.make("slice", prims);
+		}
+		
+		// slice of the form array[start:end]
+		str = peek();
+		prim = new Parser(str).parseExpression().exec();
+		if (!(prim instanceof Int)) throw new ParsingException("Array subscripts must be an Int.");
+		endIndx = (Int)prim;
+		gobble(str);
+		if (!gobble("]")) throw new ParsingException("Array slice must end with ']'");
+		Primitive[] prims = new Primitive[]{ seq, startIndx, endIndx };
+		return FunctionFactory.make("slice", prims);
 		
 	}
 	

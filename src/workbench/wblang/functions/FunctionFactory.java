@@ -26,7 +26,7 @@ public class FunctionFactory {
 		funcs.put("clusterer", FuncClusterer.class);
 		funcs.put("cluster", FuncCluster.class);
 		funcs.put("load", FuncLoad.class);
-		funcs.put("contents", FuncContents.class);
+		funcs.put("slice", FuncSlice.class);
 		funcs.put("vectorise", FuncVectorise.class);
 		funcs.put("loadhosts", FuncLoadHosts.class);
 		funcs.put("get", FuncGet.class);
