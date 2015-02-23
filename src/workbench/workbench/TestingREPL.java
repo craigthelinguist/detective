@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import primitives.Int;
-import primitives.Kore;
-import rules.Expression;
-import rules.Primitive;
+import wblang.primitives.Int;
+import wblang.primitives.Kore;
+import wblang.rules.Expression;
+import wblang.rules.Primitive;
 
 
 public class TestingREPL {

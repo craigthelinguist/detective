@@ -4,9 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import primitives.Seq;
-import primitives.Str;
-import rules.Primitive;
+import wblang.functions.indigenous.FuncLoadHosts;
+import wblang.primitives.Seq;
+import wblang.primitives.Str;
+import wblang.rules.Primitive;
 
 public class TestFuncLoadHosts {
 

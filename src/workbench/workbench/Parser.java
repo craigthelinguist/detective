@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import errors.ParsingException;
-import errors.ReflectionException;
-import errors.TypeException;
-import functions.FunctionFactory;
-import primitives.Int;
-import primitives.Seq;
-import primitives.Str;
-import rules.Assignment;
-import rules.Expression;
-import rules.Primitive;
-import rules.Variable;
+import wblang.errors.ParsingException;
+import wblang.errors.ReflectionException;
+import wblang.errors.TypeException;
+import wblang.functions.FunctionFactory;
+import wblang.primitives.Int;
+import wblang.primitives.Seq;
+import wblang.primitives.Str;
+import wblang.rules.Assignment;
+import wblang.rules.Expression;
+import wblang.rules.Primitive;
+import wblang.rules.Variable;
 
 public class Parser {
 

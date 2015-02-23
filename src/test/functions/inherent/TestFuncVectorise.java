@@ -4,9 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import primitives.Str;
-import primitives.Vec;
-import rules.Primitive;
+import wblang.functions.indigenous.FuncVectorise;
+import wblang.primitives.Str;
+import wblang.primitives.Vec;
+import wblang.rules.Primitive;
 
 public class TestFuncVectorise {
 

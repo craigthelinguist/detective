@@ -1,0 +1,1 @@
+wblang is a domain-specific language for conducting those qualitative tests that require human judgement. It is for doing things like seeing how different parameters and initial conditions affect clustering.

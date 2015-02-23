@@ -4,9 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import primitives.Int;
-import primitives.Str;
-import rules.Primitive;
+import wblang.functions.indigenous.FuncClusterer;
+import wblang.primitives.Int;
+import wblang.primitives.Str;
+import wblang.rules.Primitive;
 
 public class TestFuncClusterer {
 	
