@@ -1,5 +1,7 @@
  package workbench;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,9 +35,22 @@ public class TestingREPL {
 	public static void error (String msg) {
 		System.err.println("*** " + msg + " ***");
 	}
-			
-	public static void main(String[] args) {
-		scan = new Scanner(System.in); 
+	
+	public static void run() {
+		while (scan.hasNextLine()) {
+			String input = scan.nextLine().trim();
+			try {
+				Expression expr = new Parser(input).parseExpression();
+				Primitive p = expr.exec();
+			}
+			catch (Exception e) {
+				error(e.getMessage());
+				System.exit(1);
+			}
+		}
+	}
+	
+	public static void REPL () {
 		while (true) {
 			System.out.print(">");
 			String input = scan.nextLine().trim();	
@@ -48,5 +63,22 @@ public class TestingREPL {
 			}
 		}
 	}
-	
+
+	public static void main (String[] args) {
+		if (args.length == 1) {
+			String fpath = args[0];
+			File file = new File(fpath);
+			try {
+				scan = new Scanner(file);
+				run();
+			}
+			catch (FileNotFoundException fnfe) {
+				System.err.println("Could not find file: " + fpath);
+			}
+		}
+		
+		scan = new Scanner(System.in);
+		REPL();
+	}
+		
 }

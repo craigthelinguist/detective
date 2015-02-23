@@ -1,0 +1,3 @@
+list = load("good.txt")
+sub = list[10:15]
+print(contents(sub))

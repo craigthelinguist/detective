@@ -13,6 +13,7 @@ import wblang.primitives.Int;
 import wblang.primitives.Seq;
 import wblang.primitives.Str;
 import wblang.rules.Assignment;
+import wblang.rules.Block;
 import wblang.rules.Expression;
 import wblang.rules.Primitive;
 import wblang.rules.Variable;
