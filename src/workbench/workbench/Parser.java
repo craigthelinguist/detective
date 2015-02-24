@@ -39,7 +39,7 @@ public class Parser {
 		' '	
 	});
 	
-	private static List<String> specialCmds = Arrays.asList(new String[]{ "ls", "vars", "cd", "dir", "cat" });
+	private static List<String> specialCmds = Arrays.asList(new String[]{ "ls", "rm", "vars", "cd", "dir", "cat" });
 	
 	public Expression parseExpression()
 	throws ParsingException, ReflectionException, TypeException {
@@ -64,7 +64,7 @@ public class Parser {
 			if (token.equals("ls") || token.equals("dir") || token.equals("vars")) {
 				return FunctionFactory.make(token, new Primitive[]{});
 			}
-			else if (token.equals("cd") || token.equals("cat")) {
+			else if (token.equals("cd") || token.equals("cat") || token.equals("rm")) {
 				String arg = peek();
 				Str s = new Str(arg);
 				Primitive[] prims = new Primitive[]{ s };
