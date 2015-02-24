@@ -50,9 +50,9 @@ public class FuncComposition extends Function {
 					else counts.put(key.toString(), 1.0);
 					continue domains;
 				}
-				if (counts.containsKey("Other")) counts.put("Other", counts.get("Other") + 1);
-				else counts.put("Other", 1.0);
 			}
+			if (counts.containsKey("Other")) counts.put("Other", counts.get("Other") + 1);
+			else counts.put("Other", 1.0);
 		}
 		return counts;
 	}
@@ -70,7 +70,7 @@ public class FuncComposition extends Function {
 		for (String key : map.keySet()) {
 			double d = map.get(key);
 			d = Math.round(d * 1000)/10;
-			sb.append(key + ": " + d + "\n");
+			sb.append(key + ": " + d + "%\n");
 		}
 		return sb.toString();
 	}

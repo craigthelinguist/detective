@@ -11,6 +11,7 @@ import wblang.errors.TypeException;
 import wblang.functions.Function;
 import wblang.functions.SigTemplate;
 import wblang.functions.UsageTemplate;
+import wblang.primitives.ClusterPrim;
 import wblang.primitives.Err;
 import wblang.primitives.HostPrim;
 import wblang.primitives.Seq;
@@ -66,6 +67,20 @@ public class FuncSave extends Function {
 					}
 				}
 				
+				// if you're saving Seq<Cluster>
+				else if (seq.get(0) instanceof ClusterPrim) {
+					Seq<ClusterPrim> clusterSeq = (Seq<ClusterPrim>)seq;
+					int i = 0;
+					for (ClusterPrim cp : clusterSeq) {
+						ps.println("Cluster " + i);
+						i++;
+						for (Str query : cp) {
+							ps.println(query.toString());
+						}
+						ps.println();
+					}
+				}
+				
 				return new Str("Saved to " + file.getAbsolutePath());
 			}
 			finally {
@@ -91,7 +106,7 @@ public class FuncSave extends Function {
 
 	@Override
 	public String signature() {
-		return SigTemplate.make(name(), new String[]{ "Str", "Seq<Str>|Seq<Host>" }, new String[]{ "Kore|Err" });
+		return SigTemplate.make(name(), new String[]{ "Str", "Seq<Str>|Seq<Host>|Seq<Cluster>" }, new String[]{ "Kore|Err" });
 	}
 
 	@Override

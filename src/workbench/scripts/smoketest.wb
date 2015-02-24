@@ -1,0 +1,14 @@
+good = load("good.txt")
+bad = load("bad.txt")
+spam = load("spam.txt")
+enum = load("enum.txt")
+h = hash()
+h["good"] = good
+h["bad"] = bad
+h["spam"] = spam
+h["enum"] = enum
+hosts = loadhosts("hosts")
+vectors = seq(vectorise(good), vectorise(bad), vectorise(spam), vectorise(enum))
+cl = clusterer(5, 4, "vector", vectors)
+ans = cluster(cl, hosts)
+print(composition(ans, h))
