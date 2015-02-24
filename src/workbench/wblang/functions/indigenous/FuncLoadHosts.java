@@ -17,7 +17,7 @@ import wblang.primitives.HostPrim;
 import wblang.primitives.Seq;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncLoadHosts extends Function {
 
@@ -31,7 +31,7 @@ public class FuncLoadHosts extends Function {
 	
 	@Override
 	public Primitive exec() {
-		String fpath = TestingREPL.currentDir() + args()[0].toString();
+		String fpath = Interpreter.currentDir() + args()[0].toString();
 
 		try{
 			FileReader fr = null;

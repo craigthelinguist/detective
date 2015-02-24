@@ -6,7 +6,7 @@ import wblang.functions.SigTemplate;
 import wblang.functions.UsageTemplate;
 import wblang.primitives.Kore;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncCd extends Function {
 
@@ -21,8 +21,8 @@ public class FuncCd extends Function {
 	@Override
 	public Primitive exec() {
 		String s = args()[0].toString();
-		if (s.equals("out") || s.equals("output")) TestingREPL.changeDir("output");
-		else if (s.equals("in") || s.equals("input")) TestingREPL.changeDir("input");
+		if (s.equals("out") || s.equals("output")) Interpreter.changeDir("output");
+		else if (s.equals("in") || s.equals("input")) Interpreter.changeDir("input");
 		return Kore.kore;
 	}
 

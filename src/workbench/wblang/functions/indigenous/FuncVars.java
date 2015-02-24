@@ -9,7 +9,7 @@ import wblang.functions.UsageTemplate;
 import wblang.primitives.Str;
 import wblang.rules.Expression;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncVars extends Function {
 
@@ -25,9 +25,9 @@ public class FuncVars extends Function {
 	public Primitive exec() {
 
 		StringBuilder sb = new StringBuilder();
-		List<String> vars = TestingREPL.getBindings();
+		List<String> vars = Interpreter.getBindings();
 		for (String str : vars) {
-			Expression expr = TestingREPL.getBinding(str);
+			Expression expr = Interpreter.getBinding(str);
 			String type = "Expression";
 			if (expr instanceof Primitive) type = ((Primitive)expr).typeName();
 			else if (expr instanceof Function) type = "Function Call";

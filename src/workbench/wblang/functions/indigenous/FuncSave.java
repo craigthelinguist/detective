@@ -6,15 +6,17 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
+import dns.Host;
 import wblang.errors.TypeException;
 import wblang.functions.Function;
 import wblang.functions.SigTemplate;
 import wblang.functions.UsageTemplate;
 import wblang.primitives.Err;
+import wblang.primitives.HostPrim;
 import wblang.primitives.Seq;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncSave extends Function {
 
@@ -31,16 +33,39 @@ public class FuncSave extends Function {
 	@Override
 	public Primitive exec() {
 		Str fname = (Str)args()[0];
-		String fpath = TestingREPL.currentDir() + fname;
+		String fpath = Interpreter.currentDir() + fname;
 		File file = new File(fpath);
 		try {
 			PrintStream ps = null;
 			try{
 				ps = new PrintStream(file);
-				Seq<Str> strings = (Seq<Str>)args()[1];
-				for (Str s : strings) {
-					ps.println(s.toString());
+				Seq seq = (Seq) args()[1];
+
+				// if you're saving Seq<Str>
+				if (seq.get(0) instanceof Str) {
+					Seq<Str> strings = (Seq<Str>)args()[1];
+					for (Str s : strings) {
+						ps.println(s.toString());
+					}
 				}
+				
+				// if you're saving Seq<Host>
+				else if (seq.get(0) instanceof HostPrim) {
+					Seq<HostPrim> hostSeq = (Seq<HostPrim>)seq;
+					for (HostPrim hp : hostSeq) {
+						
+						Host host = hp.getHost();
+						ps.println(host.toString());
+						
+						for (String query : host.getQueries()) {
+							ps.println("\t" + query);
+						}
+						
+						ps.println();
+						
+					}
+				}
+				
 				return new Str("Saved to " + file.getAbsolutePath());
 			}
 			finally {
@@ -51,7 +76,7 @@ public class FuncSave extends Function {
 			return new Err("Error while writing to " + fpath);
 		}
 	}
-
+	
 	@Override
 	public void verifyArguments(Primitive[] args) throws TypeException {
 		if (args.length != 2 && args.length != 3) throw new TypeException("Takes 2 arguments.");
@@ -66,7 +91,7 @@ public class FuncSave extends Function {
 
 	@Override
 	public String signature() {
-		return SigTemplate.make(name(), new String[]{ "Str", "Seq" }, new String[]{ "Kore|Err" });
+		return SigTemplate.make(name(), new String[]{ "Str", "Seq<Str>|Seq<Host>" }, new String[]{ "Kore|Err" });
 	}
 
 	@Override

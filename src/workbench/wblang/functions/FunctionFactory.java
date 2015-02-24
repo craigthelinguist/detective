@@ -39,7 +39,6 @@ public class FunctionFactory {
 		funcs.put("hashput", FuncHashPut.class);
 		funcs.put("generate", FuncGenerate.class);
 		funcs.put("save", FuncSave.class);
-		funcs.put("savehosts", FuncSaveHosts.class);
 		funcs.put("concat", FuncConcat.class);
 		funcs.put("dir", FuncDir.class);
 		funcs.put("cat", FuncCat.class);

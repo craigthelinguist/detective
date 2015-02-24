@@ -6,7 +6,7 @@ import wblang.functions.SigTemplate;
 import wblang.functions.UsageTemplate;
 import wblang.primitives.Kore;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncQuit extends Function {
 
@@ -20,7 +20,7 @@ public class FuncQuit extends Function {
 	
 	@Override
 	public Primitive exec() {
-		TestingREPL.shutdown();
+		Interpreter.shutdown();
 		return Kore.kore; // won't actually do anything
 	}
 

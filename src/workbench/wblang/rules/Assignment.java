@@ -1,6 +1,6 @@
 package wblang.rules;
 
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class Assignment extends Expression {
 
@@ -14,7 +14,7 @@ public class Assignment extends Expression {
 	
 	@Override
 	public Primitive exec () {
-		TestingREPL.assign(variableName, assignmentExpression);
+		Interpreter.assign(variableName, assignmentExpression);
 		return assignmentExpression.exec();
 	}
 	

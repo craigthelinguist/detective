@@ -10,7 +10,7 @@ import wblang.primitives.Err;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
 import workbench.IO;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncLs extends Function {
 
@@ -50,7 +50,7 @@ public class FuncLs extends Function {
 
 	@Override
 	public Primitive exec() {
-		String dir = TestingREPL.currentDir();
+		String dir = Interpreter.currentDir();
 		File file = new File(dir);
 		File[] files = file.listFiles();
 		StringBuilder sb = new StringBuilder();

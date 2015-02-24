@@ -1,5 +1,7 @@
  package workbench;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import wblang.rules.Expression;
 import wblang.rules.Primitive;
 
 
-public class TestingREPL {
+public class Interpreter {
 
 	private static Scanner scan;
 
@@ -41,7 +43,7 @@ public class TestingREPL {
 	
 	public static List<String> getBindings () {
 		List<String> bindings = new ArrayList<>();
-		for (String s : TestingREPL.bindings.keySet()) {
+		for (String s : Interpreter.bindings.keySet()) {
 			bindings.add(s);
 		}
 		Collections.sort(bindings);
@@ -70,20 +72,6 @@ public class TestingREPL {
 			}
 		}
 	}
-	
-	public static void REPL () {
-		while (true) {
-			System.out.print(">");
-			String input = scan.nextLine().trim();	
-			try {
-				Expression expr = new Parser(input).parseExpression();
-				Primitive p = expr.exec();
-				if (p != Kore.kore) System.out.println(p.eval()+"\n");
-			} catch (Exception e) {
-				error(e.getMessage());
-			}
-		}
-	}
 
 	public static void main (String[] args) {
 		if (args.length == 1) {
@@ -99,7 +87,7 @@ public class TestingREPL {
 		}
 		
 		scan = new Scanner(System.in);
-		REPL();
+		new Shell(scan).REPL();
 	}
 		
 }

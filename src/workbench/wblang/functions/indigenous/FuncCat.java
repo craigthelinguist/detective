@@ -11,7 +11,7 @@ import wblang.functions.UsageTemplate;
 import wblang.primitives.Err;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncCat extends Function {
 
@@ -28,7 +28,7 @@ public class FuncCat extends Function {
 		StringBuilder sb = new StringBuilder();
 		Primitive[] fnames = args();
 		for (Primitive fname : fnames) {
-			String fpath = TestingREPL.currentDir() + fname;
+			String fpath = Interpreter.currentDir() + fname;
 			File file = new File(fpath);
 			if (!file.isFile()) return new Err("Could not find file " + fpath);
 			

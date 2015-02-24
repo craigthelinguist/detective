@@ -6,7 +6,7 @@ import wblang.functions.SigTemplate;
 import wblang.functions.UsageTemplate;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncDir extends Function {
 
@@ -20,7 +20,7 @@ public class FuncDir extends Function {
 	
 	@Override
 	public Primitive exec() {
-		return new Str(TestingREPL.currentDir());
+		return new Str(Interpreter.currentDir());
 	}
 
 	@Override

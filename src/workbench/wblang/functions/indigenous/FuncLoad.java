@@ -15,7 +15,7 @@ import wblang.primitives.Kore;
 import wblang.primitives.Seq;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
-import workbench.TestingREPL;
+import workbench.Interpreter;
 
 public class FuncLoad extends Function {
 	
@@ -29,7 +29,7 @@ public class FuncLoad extends Function {
 	
 	@Override
 	public Primitive exec() {
-		String fpath = TestingREPL.currentDir() + args()[0].toString();
+		String fpath = Interpreter.currentDir() + args()[0].toString();
 		fpath = fpath.replace('/', File.separatorChar);
 		File file = new File(fpath);
 		if (!file.exists()) return Kore.kore;

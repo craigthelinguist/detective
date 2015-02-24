@@ -75,7 +75,7 @@ public class Parser {
 		}
 		
 		// is token reference to an existing variable?
-		if (TestingREPL.getBinding(token) != null) {
+		if (Interpreter.getBinding(token) != null) {
 			
 			// either reassigning variable, or dereferencing.
 			if (!done() && peek("=")) {
@@ -86,13 +86,13 @@ public class Parser {
 			// array subscripting
 			else if (!done() && peek("[")) {
 
-				Primitive prim = TestingREPL.getBinding(token).exec();
+				Primitive prim = Interpreter.getBinding(token).exec();
 				if (prim instanceof Seq) return parseSlice((Seq)prim);	
 				else if (prim instanceof Hash) return parseHashIndex((Hash)prim);
 				else throw new ParsingException("Can only subscript into Seq, Host, or Hash.");
 				
 			}
-			else return TestingREPL.getBinding(token);
+			else return Interpreter.getBinding(token);
 		}
 		
 		// need delimiter
