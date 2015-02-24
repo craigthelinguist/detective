@@ -2,7 +2,10 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -34,6 +37,15 @@ public class TestingREPL {
 	public static Expression getBinding(String name) {
 		if (bindings.containsKey(name)) return bindings.get(name);
 		else return null;
+	}
+	
+	public static List<String> getBindings () {
+		List<String> bindings = new ArrayList<>();
+		for (String s : TestingREPL.bindings.keySet()) {
+			bindings.add(s);
+		}
+		Collections.sort(bindings);
+		return bindings;
 	}
 	
 	public static void shutdown () {
