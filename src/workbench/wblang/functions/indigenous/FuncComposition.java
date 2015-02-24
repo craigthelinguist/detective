@@ -43,8 +43,8 @@ public class FuncComposition extends Function {
 		Map<String,Double> counts = new HashMap<>();
 		domains: for (Str domain : cp.asList()) {
 			for (Primitive k : hash) {
-				Str key = (Str)k;
-				Seq<Str> seq = (Seq<Str>)hash.get(key);
+				Seq<Str> seq = (Seq<Str>)hash.get((Str)k);
+				String key = k.toString();
 				if (seq.contains(domain)) {
 					if (counts.containsKey(key)) counts.put(key.toString(), counts.get(key) + 1);
 					else counts.put(key.toString(), 1.0);

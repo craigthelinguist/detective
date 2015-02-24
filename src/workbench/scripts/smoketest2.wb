@@ -1,0 +1,12 @@
+good = load("good.txt")
+bad = load("bad.txt")
+vectors = seq(vectorise(good), vectorise(bad))
+h1 = host(good)
+h2 = host(bad)
+hosts = seq(h1, h2)
+h = hash()
+h["good"] = good
+h["bad"] = bad
+cl = clusterer(5, 2, "vector", vectors)
+ans = cluster(cl, hosts)
+print(composition(ans, h))
