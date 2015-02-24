@@ -39,6 +39,8 @@ public class Parser {
 		' '	
 	});
 	
+	private static List<String> specialCmds = Arrays.asList(new String[]{ "ls", "cd", "dir", "cat" });
+	
 	public Expression parseExpression()
 	throws ParsingException, ReflectionException, TypeException {
 		
@@ -54,6 +56,23 @@ public class Parser {
 
 		// parse string literal
 		if (token.startsWith("\"") && token.endsWith("\"")) return new Parser(token).parseStr();
+		
+		// check for special commands
+		if (specialCmds.contains(token)) {
+			
+			
+			if (token.equals("ls") || token.equals("dir")) {
+				return FunctionFactory.make(token, new Primitive[]{});
+			}
+			else if (token.equals("cd") || token.equals("cat")) {
+				String arg = peek();
+				Str s = new Str(arg);
+				Primitive[] prims = new Primitive[]{ s };
+				return FunctionFactory.make(token, prims);
+			}
+			
+			
+		}
 		
 		// is token reference to an existing variable?
 		if (TestingREPL.getBinding(token) != null) {

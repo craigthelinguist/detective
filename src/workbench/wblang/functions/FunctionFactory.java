@@ -41,6 +41,9 @@ public class FunctionFactory {
 		funcs.put("save", FuncSave.class);
 		funcs.put("savehosts", FuncSaveHosts.class);
 		funcs.put("concat", FuncConcat.class);
+		funcs.put("dir", FuncDir.class);
+		funcs.put("cat", FuncCat.class);
+		funcs.put("cd", FuncCd.class);
 	}
 	
 	public static final Map<String, String> aliases = new HashMap<>();

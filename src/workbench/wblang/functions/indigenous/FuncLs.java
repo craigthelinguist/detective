@@ -10,6 +10,7 @@ import wblang.primitives.Err;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
 import workbench.IO;
+import workbench.TestingREPL;
 
 public class FuncLs extends Function {
 
@@ -24,20 +25,17 @@ public class FuncLs extends Function {
 	@Override
 	public void verifyArguments (Primitive[] args)
 	throws TypeException {	
-		if (args.length != 1) throw new TypeException("Too many arguments: type signature is: " + signature());
-		if (!(args[0] instanceof Str)) throw new TypeException("First and only argument must be either \"output\" or \"input\"");
-		String s = args[0].toString();
-		if (!(s.equals("output") || s.equals("input"))) throw new TypeException("First and only argument must be either \"output\" or \"input\"");
+		if (args.length != 0) throw new TypeException("ls takes no arguments.");
 	}
 
 	@Override
 	public String usage () {
-		return UsageTemplate.make(signature(), "\"Output\" or \"Input\"", "The files in the specified folder.");
+		return UsageTemplate.make(signature(), "None.", "The files in the working director.y");
 	}
 
 	@Override
 	public String signature () {
-		return SigTemplate.make(name(), new String[]{ "Str" }, new String[]{ "Str" });
+		return SigTemplate.make(name(), new String[0], new String[]{ "Str" });
 	}
 	
 	@Override
@@ -52,16 +50,12 @@ public class FuncLs extends Function {
 
 	@Override
 	public Primitive exec() {
-		String fpath = args()[0].toString();
-		if (fpath.equals("output")) fpath = IO.OUTPUT;
-		else fpath = IO.INPUT;
-		File file = new File(fpath);
-		if (!file.isDirectory()) return new Err("Could not find the directory " + file.getAbsolutePath());
-		StringBuilder sb = new StringBuilder();
+		String dir = TestingREPL.currentDir();
+		File file = new File(dir);
 		File[] files = file.listFiles();
-		if (files.length == 0) return new Err("No files in " + (args()[0]));
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < files.length; i++) {
-			sb.append("* " + files[i].getName());
+			sb.append(files[i].getName());
 			if (i != files.length - 1) sb.append("\n");
 		}
 		return new Str(sb.toString());

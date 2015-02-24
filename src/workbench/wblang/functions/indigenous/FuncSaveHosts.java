@@ -64,7 +64,11 @@ public class FuncSaveHosts extends Function {
 		if (args.length != 2) throw new TypeException("Takes 2 arguments.");
 		if (!(args[0] instanceof Str)) throw new TypeException("First argument should be filename to save to.");
 		if (!(args[1] instanceof Seq)) throw new TypeException("Second argument should be a sequence of hosts.");
-
+		if (args.length == 2) {
+			if (!(args[2] instanceof Str)) throw new TypeException("Third argument should be string specifying folder to save.");
+			Str s = (Str)args[2];
+			if (!FuncSave.validDirs.contains(s.toString())) throw new TypeException("Third argument not a legal folder.");
+		}
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package wblang.functions.indigenous;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 import wblang.errors.TypeException;
 import wblang.functions.Function;
@@ -15,6 +17,8 @@ import wblang.rules.Primitive;
 
 public class FuncSave extends Function {
 
+	public static List<String> validDirs = Arrays.asList(new String[]{ "in", "input", "out", "output" });
+	
 	public FuncSave (Primitive[] prims) throws TypeException {
 		super(prims);
 	}
@@ -26,7 +30,12 @@ public class FuncSave extends Function {
 	@Override
 	public Primitive exec() {
 		Str fname = (Str)args()[0];
-		String fpath = "src/output/" + fname;
+		String folder = "output";
+		if (args().length == 3) {
+			String s = args()[2].toString();
+			if (s.equals("in") || s.equals("input")) folder = "input";
+		}
+		String fpath = "src/" + folder + "/" + fname;
 		fpath = fpath.replace('/', File.separatorChar);
 		File file = new File(fpath);
 		try {
@@ -50,9 +59,14 @@ public class FuncSave extends Function {
 
 	@Override
 	public void verifyArguments(Primitive[] args) throws TypeException {
-		if (args.length != 2) throw new TypeException("Takes 2 arguments.");
+		if (args.length != 2 && args.length != 3) throw new TypeException("Takes 2 arguments.");
 		if (!(args[0] instanceof Str)) throw new TypeException("First argument should be filename to save to.");
 		if (!(args[1] instanceof Seq)) throw new TypeException("Second argument should be a sequence of strings.");
+		if (args.length == 2) {
+			if (!(args[2] instanceof Str)) throw new TypeException("Third argument should be string specifying folder to save.");
+			Str s = (Str)args[2];
+			if (!validDirs.contains(s.toString())) throw new TypeException("Third argument not a legal folder.");
+		}
 	}
 
 	@Override

@@ -14,9 +14,19 @@ import wblang.rules.Primitive;
 public class TestingREPL {
 
 	private static Scanner scan;
-	
+
+	private static String CURRENT_DIR = "src/input/".replace('/', File.separatorChar);
 	private static Map<String, Expression> bindings = new HashMap<>();
 
+	public static String currentDir () {
+		return CURRENT_DIR;
+	}
+	
+	public static void changeDir (String newDir) {
+		CURRENT_DIR = "src/" + newDir + "/";
+		CURRENT_DIR = CURRENT_DIR.replace('/', File.separatorChar);
+	}
+	
 	public static void assign(String name, Expression expr) {
 		bindings.put(name, expr);
 	}
