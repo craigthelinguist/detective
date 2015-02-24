@@ -14,6 +14,7 @@ import wblang.primitives.HostPrim;
 import wblang.primitives.Seq;
 import wblang.primitives.Str;
 import wblang.rules.Primitive;
+import workbench.TestingREPL;
 
 public class FuncSaveHosts extends Function {
 
@@ -28,10 +29,8 @@ public class FuncSaveHosts extends Function {
 	@Override
 	public Primitive exec() {
 		Str s = (Str)args()[0];
-		String fpath = "src/output/" + s;
-		fpath = fpath.replace('/', File.separatorChar);
+		String fpath = TestingREPL.currentDir() + s;
 		File file = new File(fpath);
-		
 		try {
 			
 			PrintStream ps = null;
