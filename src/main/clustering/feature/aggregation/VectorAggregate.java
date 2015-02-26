@@ -10,6 +10,11 @@ import vectors.Vector;
 import vectors.Vectors;
 import dns.Host;
 
+/**
+ * This implementation is O(n^3)
+ * @author aaroncraig
+ *
+ */
 public class VectorAggregate implements AggregateStrategy {
 
 	final int SUBSET_SIZE;
