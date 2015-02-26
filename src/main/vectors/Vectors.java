@@ -192,7 +192,7 @@ public class Vectors {
 		
 		// return features
 		return new double[] {
-			//Stats.mean(lengths),
+				//Stats.mean(lengths),
 			//Stats.variance(lengths),
 			//Stats.median(lengths),
 			//Stats.stdev(lengths),
@@ -202,7 +202,8 @@ public class Vectors {
 			Stats.stdev(domainLevels),
 			1.0 * tlds.size(),
 			1.0 * chars.size(),
-			1.0 * numDotComs / domains.size() };
+			1.0 * numDotComs / domains.size()
+			};
 		
 	}
 	

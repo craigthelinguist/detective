@@ -18,6 +18,8 @@ public class VectorAggregate implements AggregateStrategy {
 		this.SUBSET_SIZE = SUBSET_SIZE;
 	}
 
+	private static int count = 0;
+	
 	@Override
 	public List<Vector> aggregate(List<Host> hosts) {
 		List<Vector> vectors = new ArrayList<>();
@@ -33,7 +35,11 @@ public class VectorAggregate implements AggregateStrategy {
 
 	private List<List<String>> partition (Host host) {
 		
+		System.out.println("=======================");
+		System.out.println("PARTITION FOR NEW HOST ");
 		List<String> queries = host.getQueries();
+		System.out.println(queries.size() + " QUERIES");
+		count = 0;
 		
 		// initialise UnionFindCollect trees
 		Set<UnionFindCollect> blocks = new HashSet<>();
@@ -54,6 +60,7 @@ public class VectorAggregate implements AggregateStrategy {
 			for (UnionFindCollect ufc1 : blocks) {
 				for (UnionFindCollect ufc2 : blocks) {
 					
+					count++;
 					
 					// don't compare with yourself
 					if (ufc1 == ufc2) continue;
@@ -113,6 +120,7 @@ public class VectorAggregate implements AggregateStrategy {
 		}
 		
 		// return the vectors
+		System.out.println(count + " operations");
 		return partition;
 		
 	}

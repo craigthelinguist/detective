@@ -27,6 +27,7 @@ public class Histogram <KEY> {
 		NGRAM_MAP.put(1, allNgrams(alphabet, 1));
 		NGRAM_MAP.put(2, allNgrams(alphabet, 2));
 		NGRAM_MAP.put(3, allNgrams(alphabet, 3));
+		NGRAM_MAP.put(4, allNgrams(alphabet, 4));
 	}
 	
 	

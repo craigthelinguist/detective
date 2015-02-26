@@ -31,16 +31,45 @@ public class FuncSave extends Function {
 		super();
 	}
 	
+	private Primitive saveClusters() {
+		
+		
+		Seq<ClusterPrim> seq = (Seq<ClusterPrim>)args()[1];
+		int i = 0;
+		
+		for (ClusterPrim cp : seq) {
+			
+			PrintStream ps = null;
+			try{
+				ps = new PrintStream(new File("cluster" + i));
+				i++;
+				for (Str query : cp.asList()) {
+					ps.println(query.toString());
+				}
+			}
+			catch (IOException ioe) {
+				if (ps != null) ps.close();
+			}
+			
+		}
+		
+		return new Str("Saved by the bell");
+		
+	}
+	
 	@Override
 	public Primitive exec() {
 		Str fname = (Str)args()[0];
 		String fpath = Interpreter.currentDir() + fname;
 		File file = new File(fpath);
+		Seq seq = (Seq)args()[1];
+		if (seq.get(0) instanceof ClusterPrim) return saveClusters();
+		
 		try {
 			PrintStream ps = null;
 			try{
 				ps = new PrintStream(file);
-				Seq seq = (Seq) args()[1];
+				seq = (Seq) args()[1];
 
 				// if you're saving Seq<Str>
 				if (seq.get(0) instanceof Str) {

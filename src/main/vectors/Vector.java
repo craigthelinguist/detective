@@ -77,9 +77,16 @@ public class Vector {
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
 		Vector other = (Vector) obj;
-		if (!host.equals(other.host)) return false;
+		
+		// check null
+		if (host != other.host) return false;
+		if (host != null && other.host != null && !host.equals(other.host)) return false;
+		
+		// check queries
+		if (queries != other.queries) return false;
+		if (queries != null && other.queries != null && !queries.equals(other.queries)) return false;
+		
 		if (!Arrays.equals(components, other.components)) return false;
-		if (!queries.equals(other.queries)) return false;
 		return true;
 	}
 	
