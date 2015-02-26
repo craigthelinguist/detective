@@ -45,7 +45,7 @@ public class Grid {
 		int i = 0;
 		List<double[]> dubs = new ArrayList<>();
 		double[] first = listOfDubs.get(0);
-		for (double d : first) {
+		for (double d : first) { 
 			double[] dubArray = new double[DIMENSIONS];
 			dubArray[0] = d;
 			dubs.add(dubArray);
